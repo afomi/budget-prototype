@@ -9,63 +9,345 @@
       "name": "Agency formulation",
       "owner": "Agency",
       "example": "The agency identifies a flood-damaged bridge on a federal road and requests $10 million for a bridge-repair program. The request explains the need, proposed work, and estimated cost.",
-      "example_document": "Agency budget request and justification"
+      "example_document": "Agency budget request and justification",
+      "artifact": {
+        "kind": "packet",
+        "icon": "packet",
+        "title": "Agency request package",
+        "reference": "BR-2028-0042 · draft v1",
+        "format": "A submission package: written justification, estimate tables, briefing materials, and budget-system data. This preview is one program’s slice of an agency request.",
+        "rows": [
+          [
+            "Budget year",
+            "FY 2028"
+          ],
+          [
+            "Program",
+            "Flood-Damaged Bridge Repair"
+          ],
+          [
+            "Requested",
+            " $10,000,000"
+          ],
+          [
+            "Priority site",
+            "Cedar Creek Bridge · fictional"
+          ]
+        ],
+        "body": "Restore a flood-damaged federal-road crossing used by school buses and emergency vehicles. Request condition-based repairs, design support, and access planning.",
+        "files": [
+          {
+            "title": "Justification narrative",
+            "format": "Word / PDF-style working document",
+            "path": "examples/lifecycle/01-agency-request.md"
+          },
+          {
+            "title": "Estimate workbook",
+            "format": "Spreadsheet / budget-table extract",
+            "path": "examples/lifecycle/01-budget-estimates.csv"
+          },
+          {
+            "title": "Leadership briefing",
+            "format": "Presentation outline",
+            "path": "examples/lifecycle/01-review-briefing.md"
+          }
+        ],
+        "source_url": "https://www.whitehouse.gov/wp-content/uploads/2025/08/s51.pdf",
+        "source_label": "OMB’s justification requirements",
+        "download": "examples/lifecycle/01-agency-request.md",
+        "draft": "# Agency request package\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nBR-2028-0042 · draft v1\n\n## Context\n\nThe agency identifies a flood-damaged bridge on a federal road and requests $10 million for a bridge-repair program. The request explains the need, proposed work, and estimated cost.\n\n## Sample record\n\n- **Budget year:** FY 2028\n- **Program:** Flood-Damaged Bridge Repair\n- **Requested:** $10,000,000\n- **Priority site:** Cedar Creek Bridge · fictional\n\nRestore a flood-damaged federal-road crossing used by school buses and emergency vehicles. Request condition-based repairs, design support, and access planning.\n\n## Package contents\n\n- Justification narrative — Word / PDF-style working document\n- Estimate workbook — Spreadsheet / budget-table extract\n- Leadership briefing — Presentation outline\n"
+      }
     },
     {
       "id": "omb-review",
       "name": "OMB review and passback",
       "owner": "OMB",
       "example": "OMB reviews the $10 million request and asks the agency to revise its repair priorities and delivery schedule. The agency submits an updated request; this is still planning for proposed funding.",
-      "example_document": "OMB passback and versioned agency response"
+      "example_document": "OMB passback and versioned agency response",
+      "artifact": {
+        "kind": "memo",
+        "icon": "document",
+        "title": "Passback decision memo",
+        "reference": "PB-2028-017 · pre-decisional sample",
+        "format": "OMB communicates budget decisions and direction; the agency may appeal and later receives settlement guidance. Formats vary. This sample uses a memo and revision table.",
+        "rows": [
+          [
+            "To",
+            "Agency budget director"
+          ],
+          [
+            "From",
+            "OMB budget review · sample"
+          ],
+          [
+            "Planning level",
+            "$10,000,000 proposed"
+          ]
+        ],
+        "decisions": [
+          [
+            "Funding level",
+            "Retain the proposed $10 million program level."
+          ],
+          [
+            "Priorities",
+            "Put routes serving essential access first."
+          ],
+          [
+            "Revision requested",
+            "Replace uniform allowances with condition-based estimates and show quarterly phasing."
+          ]
+        ],
+        "body": "Agency response v2: revised the bridge priority list and cost schedule; added quarterly phasing. This planning exchange does not enact an appropriation.",
+        "source_url": "https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_9420_001A_&page_name=Chapter4",
+        "source_label": "Example agency passback and settlement process",
+        "download": "examples/lifecycle/02-passback.md",
+        "draft": "# Passback decision memo\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nPB-2028-017 · pre-decisional sample\n\n## Context\n\nOMB reviews the $10 million request and asks the agency to revise its repair priorities and delivery schedule. The agency submits an updated request; this is still planning for proposed funding.\n\n## Sample record\n\n- **To:** Agency budget director\n- **From:** OMB budget review · sample\n- **Planning level:** $10,000,000 proposed\n\nAgency response v2: revised the bridge priority list and cost schedule; added quarterly phasing. This planning exchange does not enact an appropriation.\n\n## Passback directions\n\n- **Funding level:** Retain the proposed $10 million program level.\n- **Priorities:** Put routes serving essential access first.\n- **Revision requested:** Replace uniform allowances with condition-based estimates and show quarterly phasing.\n"
+      }
     },
     {
       "id": "presidents-budget",
       "name": "President’s budget",
       "owner": "Executive",
       "example": "The President’s budget proposes $10 million for the bridge-repair program and is transmitted to Congress. The proposal does not itself provide spending authority.",
-      "example_document": "President’s budget proposal and transmittal"
+      "example_document": "President’s budget proposal and transmittal",
+      "artifact": {
+        "kind": "document",
+        "icon": "document",
+        "title": "President’s budget — program excerpt",
+        "reference": "PBR-2028 · illustrative excerpt",
+        "format": "Published budget tables and supporting narratives. This is a small program-level excerpt from a much larger submission.",
+        "rows": [
+          [
+            "Budget year",
+            "FY 2028"
+          ],
+          [
+            "Proposed program level",
+            "$10,000,000"
+          ],
+          [
+            "Purpose",
+            "Repair flood-damaged federal-road bridges"
+          ]
+        ],
+        "body": "The Administration proposes a bridge-repair program focused on restoring essential access. The request includes project prioritization and expected delivery milestones. Congress will consider funding through legislation.",
+        "download": "examples/lifecycle/03-presidents-budget.md",
+        "draft": "# President’s budget — program excerpt\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nPBR-2028 · illustrative excerpt\n\n## Context\n\nThe President’s budget proposes $10 million for the bridge-repair program and is transmitted to Congress. The proposal does not itself provide spending authority.\n\n## Sample record\n\n- **Budget year:** FY 2028\n- **Proposed program level:** $10,000,000\n- **Purpose:** Repair flood-damaged federal-road bridges\n\nThe Administration proposes a bridge-repair program focused on restoring essential access. The request includes project prioritization and expected delivery milestones. Congress will consider funding through legislation.\n"
+      }
     },
     {
       "id": "congressional-consideration",
       "name": "Congressional consideration",
       "owner": "Congress",
       "example": "Enacted legislation provides $10 million for the bridge-repair program. The agency records the legal reference, purpose, amount, and availability period before beginning execution.",
-      "example_document": "Enacted appropriation and legal reference"
+      "example_document": "Enacted appropriation and legal reference",
+      "artifact": {
+        "kind": "document",
+        "icon": "document",
+        "title": "Appropriation text — fictional excerpt",
+        "reference": "DEMO-ACT-2028 §101 · not a real law",
+        "format": "Enacted appropriation language is linked to the agency’s authority records. The text below is invented to illustrate that handoff.",
+        "rows": [
+          [
+            "Authority record",
+            "A-001"
+          ],
+          [
+            "Amount",
+            "$10,000,000"
+          ],
+          [
+            "Availability",
+            "Through September 30, 2028"
+          ]
+        ],
+        "body": "Illustrative language: For repair of federal roads and bridges damaged by flooding, $10,000,000, to remain available for obligation through September 30, 2028. This sample creates no actual legal authority.",
+        "download": "examples/lifecycle/04-appropriation.md",
+        "draft": "# Appropriation text — fictional excerpt\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nDEMO-ACT-2028 §101 · not a real law\n\n## Context\n\nEnacted legislation provides $10 million for the bridge-repair program. The agency records the legal reference, purpose, amount, and availability period before beginning execution.\n\n## Sample record\n\n- **Authority record:** A-001\n- **Amount:** $10,000,000\n- **Availability:** Through September 30, 2028\n\nIllustrative language: For repair of federal roads and bridges damaged by flooding, $10,000,000, to remain available for obligation through September 30, 2028. This sample creates no actual legal authority.\n"
+      }
     },
     {
       "id": "apportionment",
       "name": "Apportionment",
       "owner": "OMB",
       "example": "OMB approves a $2.5 million apportionment for the period, subject to its conditions. The approved schedule links this limit to the original $10 million appropriation.",
-      "example_document": "Approved apportionment schedule"
+      "example_document": "Approved apportionment schedule",
+      "artifact": {
+        "kind": "document",
+        "icon": "document",
+        "title": "Apportionment schedule — simplified",
+        "reference": "AP-001 · illustrative approved schedule",
+        "format": "A resource-and-period schedule approved by OMB. This preview simplifies the fields; it is not a reproduction of an official form.",
+        "rows": [
+          [
+            "Parent authority",
+            "A-001 · $10,000,000"
+          ],
+          [
+            "Period",
+            "April–June 2028 · Q3"
+          ],
+          [
+            "Current apportionment",
+            "$2,500,000"
+          ],
+          [
+            "Purpose",
+            "Bridge-repair program"
+          ]
+        ],
+        "body": "The current period’s limit is linked to the appropriation and its conditions. Funds-control records retain the approved schedule and subsequent changes.",
+        "download": "examples/lifecycle/05-apportionment.md",
+        "draft": "# Apportionment schedule — simplified\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nAP-001 · illustrative approved schedule\n\n## Context\n\nOMB approves a $2.5 million apportionment for the period, subject to its conditions. The approved schedule links this limit to the original $10 million appropriation.\n\n## Sample record\n\n- **Parent authority:** A-001 · $10,000,000\n- **Period:** April–June 2028 · Q3\n- **Current apportionment:** $2,500,000\n- **Purpose:** Bridge-repair program\n\nThe current period’s limit is linked to the appropriation and its conditions. Funds-control records retain the approved schedule and subsequent changes.\n"
+      }
     },
     {
       "id": "allotment",
       "name": "Allotment",
       "owner": "Agency",
       "example": "The agency allots $1 million of the apportioned $2.5 million to the district responsible for the bridge. The district’s allotment and its restrictions are recorded in the funds-control system.",
-      "example_document": "Approved allotment document"
+      "example_document": "Approved allotment document",
+      "artifact": {
+        "kind": "decision",
+        "icon": "tree",
+        "title": "Allotment decision",
+        "reference": "AL-001 · agency funds control",
+        "format": "An agency applies its funds-control rules and records an allotment. The decision tree makes that reasoning visible in this example.",
+        "rows": [
+          [
+            "Parent",
+            "AP-001 · $2,500,000"
+          ],
+          [
+            "District request",
+            "$1,000,000"
+          ]
+        ],
+        "body": "The approved $1 million allotment goes to the district responsible for Cedar Creek Bridge. The remaining $1.5 million is available for other allotments in this simplified scenario.",
+        "decision": {
+          "start": "AP-001: $2.5 million apportioned",
+          "question": "Does the $1 million request fit the available amount, purpose, and approval conditions?",
+          "yes": "Record AL-001: $1 million allotted",
+          "no": "Return for review; no allotment recorded",
+          "remainder": "$1.5 million remains unallotted"
+        },
+        "download": "examples/lifecycle/06-allotment.md",
+        "draft": "# Allotment decision\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nAL-001 · agency funds control\n\n## Context\n\nThe agency allots $1 million of the apportioned $2.5 million to the district responsible for the bridge. The district’s allotment and its restrictions are recorded in the funds-control system.\n\n## Sample record\n\n- **Parent:** AP-001 · $2,500,000\n- **District request:** $1,000,000\n\nThe approved $1 million allotment goes to the district responsible for Cedar Creek Bridge. The remaining $1.5 million is available for other allotments in this simplified scenario.\n\n## Decision flow\n\nAP-001: $2.5 million apportioned\n\nDoes the $1 million request fit the available amount, purpose, and approval conditions?\n\n- Yes: Record AL-001: $1 million allotted\n- No: Return for review; no allotment recorded\n\n$1.5 million remains unallotted\n"
+      }
     },
     {
       "id": "obligations",
       "name": "Obligations and commitments",
       "owner": "Agency",
       "example": "After the necessary reviews, the district signs a $750,000 bridge-repair contract. The agency records this obligation against the $1 million allotment.",
-      "example_document": "Signed contract and recorded obligation"
+      "example_document": "Signed contract and recorded obligation",
+      "artifact": {
+        "kind": "screen",
+        "icon": "screen",
+        "title": "Contract and obligation record",
+        "reference": "OB-001 · sample financial-system screen",
+        "format": "The signed contract is supported by an obligation entry in the financial system. This is an invented screen, not an integration.",
+        "rows": [
+          [
+            "Contract",
+            "BR-12-2028 · Cedar Creek Bridge"
+          ],
+          [
+            "Scope",
+            "Deck repair and abutment stabilization"
+          ],
+          [
+            "Source allotment",
+            "AL-001 · $1,000,000"
+          ],
+          [
+            "Recorded obligation",
+            "$750,000"
+          ],
+          [
+            "Unobligated allotment",
+            "$250,000"
+          ]
+        ],
+        "body": "The contract file includes approvals and the evidence supporting the obligation. The recorded amount stays within the approved allotment.",
+        "download": "examples/lifecycle/07-obligation.md",
+        "draft": "# Contract and obligation record\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nOB-001 · sample financial-system screen\n\n## Context\n\nAfter the necessary reviews, the district signs a $750,000 bridge-repair contract. The agency records this obligation against the $1 million allotment.\n\n## Sample record\n\n- **Contract:** BR-12-2028 · Cedar Creek Bridge\n- **Scope:** Deck repair and abutment stabilization\n- **Source allotment:** AL-001 · $1,000,000\n- **Recorded obligation:** $750,000\n- **Unobligated allotment:** $250,000\n\nThe contract file includes approvals and the evidence supporting the obligation. The recorded amount stays within the approved allotment.\n"
+      }
     },
     {
       "id": "disbursements",
       "name": "Disbursements",
       "owner": "Agency / Treasury",
       "example": "Engineers accept the first stage of work, and an approved invoice results in a $500,000 payment through Treasury. The contract still has $250,000 obligated but unpaid.",
-      "example_document": "Acceptance record, approved invoice, and payment receipt"
+      "example_document": "Acceptance record, approved invoice, and payment receipt",
+      "artifact": {
+        "kind": "screen",
+        "icon": "screen",
+        "title": "Invoice and payment record",
+        "reference": "PAY-001 · sample disbursement screen",
+        "format": "Acceptance documentation and an approved invoice support a payment record. The display is illustrative.",
+        "rows": [
+          [
+            "Invoice",
+            "INV-2028-014"
+          ],
+          [
+            "Contract / obligation",
+            "BR-12-2028 / OB-001"
+          ],
+          [
+            "Accepted work",
+            "First deck-repair milestone"
+          ],
+          [
+            "Payment",
+            "$500,000"
+          ],
+          [
+            "Obligated, unpaid",
+            "$250,000"
+          ]
+        ],
+        "body": "The agency accepts the work and approves the invoice. The financial system records the payment and retains its Treasury reconciliation reference.",
+        "download": "examples/lifecycle/08-payment.md",
+        "draft": "# Invoice and payment record\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nPAY-001 · sample disbursement screen\n\n## Context\n\nEngineers accept the first stage of work, and an approved invoice results in a $500,000 payment through Treasury. The contract still has $250,000 obligated but unpaid.\n\n## Sample record\n\n- **Invoice:** INV-2028-014\n- **Contract / obligation:** BR-12-2028 / OB-001\n- **Accepted work:** First deck-repair milestone\n- **Payment:** $500,000\n- **Obligated, unpaid:** $250,000\n\nThe agency accepts the work and approves the invoice. The financial system records the payment and retains its Treasury reconciliation reference.\n"
+      }
     },
     {
       "id": "closeout",
       "name": "Closeout and audit",
       "owner": "Agency / Oversight",
       "example": "Later, after the remaining work and final $250,000 payment are complete, staff reconcile the contract and retain its audit trail. The appropriation account closes under its own availability and cancellation rules.",
-      "example_document": "Final reconciliation and audit evidence"
+      "example_document": "Final reconciliation and audit evidence",
+      "artifact": {
+        "kind": "document",
+        "icon": "document",
+        "title": "Closeout and reconciliation note",
+        "reference": "CO-001 · illustrative later-stage record",
+        "format": "Project reconciliation and audit evidence are retained together. Appropriation-account closeout follows its own applicable rules.",
+        "rows": [
+          [
+            "Contract total",
+            "$750,000"
+          ],
+          [
+            "First payment",
+            "$500,000 · PAY-001"
+          ],
+          [
+            "Later final payment",
+            "$250,000 · outside the live snapshot"
+          ],
+          [
+            "Reconciled total",
+            "$750,000"
+          ]
+        ],
+        "body": "After final acceptance and the remaining payment, staff reconcile the contract and retain the approval trail. Unused allotment and account balances are addressed under the applicable funds-control and account-closeout rules.",
+        "download": "examples/lifecycle/09-closeout.md",
+        "draft": "# Closeout and reconciliation note\n\n> Fictional sample for the Budget Atlas prototype. Not an official document.\n\nCO-001 · illustrative later-stage record\n\n## Context\n\nLater, after the remaining work and final $250,000 payment are complete, staff reconcile the contract and retain its audit trail. The appropriation account closes under its own availability and cancellation rules.\n\n## Sample record\n\n- **Contract total:** $750,000\n- **First payment:** $500,000 · PAY-001\n- **Later final payment:** $250,000 · outside the live snapshot\n- **Reconciled total:** $750,000\n\nAfter final acceptance and the remaining payment, staff reconcile the contract and retain the approval trail. Unused allotment and account balances are addressed under the applicable funds-control and account-closeout rules.\n"
+      }
     }
   ],
   "cross_cutting": [
