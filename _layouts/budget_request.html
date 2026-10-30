@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>{{ page.title | escape }} · Budget Atlas</title>
+ <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+ <a class="skip" href="#main">Skip to content</a>
+ <header class="flow-header"><a class="brand" href="./">Budget Atlas</a><nav class="flow-nav" aria-label="Document navigation"><a href="./#process-definition">Lifecycle</a><a href="storyboard.html">Story</a><strong>Budget request</strong><a href="https://github.com/afomi/budget-prototype/blob/main/budgets/fy2027-28/bridge-request.json">Review source ↗</a></nav><span class="badge">Fictional sample · draft request</span></header>
+ <main id="main" class="request-document">
+  {% assign request = site.data.sample_budget_request %}
+  {% assign total_cents = 0 %}{% for item in request.line_items %}{% assign total_cents = total_cents | plus: item.amount_cents %}{% endfor %}
+  <div class="intro"><div><p class="eyebrow">FY {{ request.fiscal_year }} · DRAFT FOR DOCUMENT REVIEW</p><h1>Restore essential <em>bridge access.</em></h1><p>{{ request.request_id }} · {{ request.agency | escape }}<br>{{ request.purpose | escape }}</p></div><div><span class="small muted">Requested amount · {{ request.currency }}</span><strong class="request-total">{{ total_cents | usd_cents }}</strong></div></div>
+  <div class="control-buttons request-downloads"><a class="document-link" href="budgets/fy2027-28/bridge-request.json" download>Download ordered JSON ↓</a><a class="document-link" href="budgets/fy2027-28/bridge-request.md" download>Download justification (.md) ↓</a><button type="button" onclick="window.print()">Print / Save PDF</button><a class="text-link" href="storyboard.html#2-review-the-request">See the review walkthrough →</a></div>
+  <section class="panel mt-5" aria-labelledby="line-items-title"><div class="panel-heading"><strong id="line-items-title">Proposed line items</strong><span class="muted">Account: {{ request.account | escape }}</span></div>
+   <div class="diff-scroll"><table class="request-lines"><thead><tr><th>Stable ID / description</th><th>Requested</th><th>Justification</th></tr></thead><tbody>{% for item in request.line_items %}<tr><td><code>{{ item.id }}</code><strong>{{ item.description | escape }}</strong></td><td>{{ item.amount_cents | usd_cents }}</td><td>{{ item.justification | escape }}</td></tr>{% endfor %}</tbody><tfoot><tr><th>Total</th><td>{{ total_cents | usd_cents }}</td><td>Planning request; no enacted authority is asserted.</td></tr></tfoot></table></div>
+  </section>
+  <article class="request-prose">{{ site.data.sample_budget_justification | markdownify }}</article>
+  <details class="technical-note"><summary>Use this as a lightweight request toolkit</summary><p>Edit the JSON for amounts and line items, and the Markdown for the justification. Jekyll generates this HTML from those same files. Open a GitHub PR to review the changes; merging approves the document version.</p><pre>npm run validate:budgets
+npm run build</pre><p>The prototype walkthrough uses example reviewer roles. No browser action writes to GitHub or a blockchain.</p></details>
+  <footer><span>Sample request · JSON + Markdown → HTML</span><a href="./">Back to budget cycles</a><span>No real funding request or appropriation.</span></footer>
+ </main>
+</body>
+</html>

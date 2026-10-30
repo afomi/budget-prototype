@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "request_id": "BR-2028-0042",
+  "fiscal_year": 2028,
+  "agency": "Example federal roads agency (fictional)",
+  "account": "DEMO-2028",
+  "currency": "USD",
+  "purpose": "Repair flood-damaged federal-road bridges",
+  "line_items": [
+    {
+      "id": "design-inspection",
+      "amount_cents": 150000000,
+      "description": "Design and inspection support",
+      "justification": "Support design and acceptance of bridge repairs."
+    },
+    {
+      "id": "emergency-access",
+      "amount_cents": 100000000,
+      "description": "Emergency access planning",
+      "justification": "Plan temporary routes while bridges are repaired."
+    },
+    {
+      "id": "priority-bridge-repairs",
+      "amount_cents": 750000000,
+      "description": "Priority bridge repairs",
+      "justification": "Repair sites using uniform project allowances."
+    }
+  ]
+}

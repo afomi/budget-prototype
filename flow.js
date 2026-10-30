@@ -11,7 +11,11 @@ function renderArtifact(activity){
  const a=activity.artifact;
  let html='<div class="artifact-preview '+(a.kind==="screen"?"artifact-screen":"")+'"><div class="artifact-preview-heading">'+artifactIcon(a.icon)+'<div><span class="artifact-sample">FICTIONAL SAMPLE</span><h4>'+esc(a.title)+'</h4></div></div><p class="artifact-reference">'+esc(a.reference)+'</p>';
  if(a.files)html+='<div class="artifact-files">'+a.files.map(file=>'<a href="'+esc(file.path)+'" download>'+artifactIcon("document")+'<span><strong>'+esc(file.title)+'</strong><small>'+esc(file.format)+'</small></span><span aria-hidden="true">↓</span></a>').join("")+'</div>';
- if(a.kind==="decision"){
+ if(a.request_page)html+='<a class="artifact-open-request" href="'+esc(a.request_page)+'">Open full budget request →</a>';
+ if(a.kind==="review"){
+  const r=a.review;
+  html+='<div class="pr-story"><p class="pr-branches"><code>'+esc(r.head)+'</code> → <code>'+esc(r.base)+'</code></p><article><strong>1 · OMB requests changes</strong><p>'+esc(r.review_summary)+'</p><p class="pr-comment"><code>'+esc(r.item_id)+' / justification</code><br>'+esc(r.comment)+'</p></article><article><strong>2 · Agency commits a revision</strong><div class="pr-diff"><p class="pr-removed">− '+esc(r.old_justification)+'</p><p class="pr-added">+ '+esc(r.new_justification)+'</p></div><p>'+esc(r.agency_response)+'</p><p><a href="'+esc(r.initial_path)+'" download>Initial JSON ↓</a> · <a href="'+esc(r.revised_path)+'" download>Revised JSON ↓</a></p></article><article><strong>3 · Reviewer approves and merges</strong><p>The merge settles this planning document version. The PR retains the review, response, and revisions. It does not enact an appropriation.</p></article><p class="micro">Illustrated review only. Use a real GitHub PR for persistent discussion and approval.</p></div>';
+ }else if(a.kind==="decision"){
   const d=a.decision;
   html+='<div class="decision-tree"><div class="decision-node">'+esc(d.start)+'</div><span class="decision-arrow" aria-hidden="true">↓</span><div class="decision-question">'+esc(d.question)+'</div><div class="decision-branches"><div><span>Yes ↓</span><div class="decision-node">'+esc(d.yes)+'</div></div><div><span>No ↓</span><div class="decision-node decision-hold">'+esc(d.no)+'</div></div></div><p>'+esc(d.remainder)+'</p></div>';
  }else{
@@ -19,9 +23,10 @@ function renderArtifact(activity){
   if(a.decisions)html+='<div class="artifact-directions">'+a.decisions.map(([issue,direction])=>'<p><strong>'+esc(issue)+'</strong> '+esc(direction)+'</p>').join("")+'</div>';
   html+='<p class="artifact-body">'+esc(a.body)+'</p>';
  }
- html+='<details class="artifact-draft"><summary>Read sample draft</summary><pre>'+esc(a.draft)+'</pre></details><a class="artifact-download" href="'+esc(a.download)+'" download>Download sample draft (.md) ↓</a></div>';
+ html+='<details class="artifact-draft"><summary>'+esc(a.draft_label||"Read sample draft")+'</summary><pre>'+esc(a.draft)+'</pre></details><a class="artifact-download" href="'+esc(a.download)+'" download>'+esc(a.download_label||"Download sample draft (.md) ↓")+'</a></div>';
  $("lifecycle-artifact").innerHTML=html;
  $("lifecycle-example-format").textContent=a.format;
+ $("lifecycle-example-verification").textContent=activity.verification_fit;
  $("lifecycle-example-source").innerHTML=a.source_url?'<a href="'+esc(a.source_url)+'" target="_blank" rel="noreferrer">'+esc(a.source_label)+' ↗</a>':"";
 }
 function selectActivity(index){

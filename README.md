@@ -14,7 +14,7 @@ The primary view is process-oriented:
 
 The primary operating view manages multiple budget cycles in parallel. A fiscal-year budget includes preparation before its year and execution and closeout afterward. Git budget versions and PR approvals are supporting document mechanics. These ordered JSON files are embedded by Jekyll without a backend or fetch request.
 
-Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include a simple packet, memo, document, screen, or allotment decision tree. Readable draft excerpts and downloadable Markdown samples live in examples/lifecycle/; the first packet also has a CSV estimate and briefing outline. These are illustrative artifacts, not official forms or actual agency records. The previews distinguish a proposed request from enacted authority.
+Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include a simple packet, memo, document, screen, or allotment decision tree. Readable draft excerpts and downloadable Markdown samples live in examples/lifecycle/; the first packet also has a CSV estimate and briefing outline. These are illustrative artifacts, not official forms or actual agency records. The previews distinguish a proposed request from enacted authority. Stage 2 reimagines passback as a PR review: OMB direction, agency revision or appeal, and approval plus merge as settlement. The memo is a review-summary export. The review is a compact illustrated sequence linked to actual sample files; it does not write to GitHub or a blockchain.
 
 An optional BPMN export from Touchpoints can formalize the same lifecycle. It is not required for this prototype; keep a future BPMN file alongside the SVG rather than maintaining a separate competing process model.
 
@@ -61,6 +61,10 @@ The extra $5,000 is an invented review exercise; the source amounts are real. Th
 
 Use lowercase names and fyYYYY-YY, with the starting year in full. Use the actual fiscal year rather than relative labels such as "next-year". Use draft PRs for work in progress. Git tracks document versions; the PR records approval, so budget JSON has no mutable review-status field.
 
+## Standalone budget request
+
+Open budget-request.html for a printable, human-readable request generated from budgets/fy2027-28/bridge-request.json and its Markdown justification. Edit those two files, validate the JSON, and build Jekyll. The same files are usable in a real GitHub PR; no backend is required. The passback preview uses the same line-item justification. Read storyboard.html for nine connected paragraphs linking the request, review, and execution artifacts. The source storyboard.md is readable on GitHub too.
+
 ## GitHub flow
 
 1. Edit budgets/fy2025-26/vacaville-parks.json on the working branch.
@@ -69,7 +73,7 @@ Use lowercase names and fyYYYY-YY, with the starting year in full. Use the actua
 4. Review the actual JSON lines in GitHub. Discuss amounts, scope, and funding.
 5. The Budget document Action validates JSON, runs checks, and writes a change summary in the Actions run.
 6. Resolve review threads and merge when the document is approved.
-7. A push to the approved branch creates an Actions artifact with file SHA-256 digests and the commit SHA.
+7. A push to the approved branch creates an Actions artifact with budget JSON SHA-256 digests and the commit SHA.
 
 The sample PR is intentionally left open for review. The initial approved branch seeds the transcribed source; its creation is not a historical PR approval. The evidence artifact identifies its commit and branch but does not itself prove review occurred. Review requirements are a human convention in this lean prototype; repository protection rules are not configured.
 
@@ -111,7 +115,7 @@ The evidence command works on an approved budget branch and refuses documents th
 
 ## Later blockchain use
 
-Start with an approved-document digest linked to the PR, commit, and signed approval evidence. Keep drafts, comments, and detailed records in Git or their authoritative systems. No blockchain transaction is implemented.
+Start with a working review process in Git. Use an approved-document digest linked to its review, commit, and approval evidence when independent verification adds value. Draft review activity does not need blockchain transactions. Agency-local controls may be served by a signed log; shared execution handoffs are candidates for a common verification layer. Keep drafts, comments, and detailed records in Git or their authoritative systems. No blockchain transaction is implemented.
 
 A UTXO model for allocations and obligations can be explored separately once document review works. Native coins/fees and budget dollars remain distinct. Blockchain does not establish source-document truth or independently verify a payment.
 
