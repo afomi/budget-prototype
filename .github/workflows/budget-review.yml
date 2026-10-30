@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - run: npm ci
+      - run: npm run build:css
       - run: npm run validate:budgets
       - run: npm test
       - run: npm run check

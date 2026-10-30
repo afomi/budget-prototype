@@ -1,0 +1,20 @@
+[
+  {
+    "id": "bridge",
+    "label": "Narrative A",
+    "title": "A bridge the community depends on",
+    "paragraph": "Picture a flood-damaged bridge on a federal road that school buses and ambulances use. In this hypothetical example, Congress provides $10 million for the agency’s bridge-repair program. OMB apportions $2.5 million for the period, and the agency allots $1 million to the district responsible for that road. The district signs a $750,000 repair contract, creating an obligation. After engineers accept the first stage of work, an authorized $500,000 payment is issued through Treasury. The remaining $250,000 is an unpaid obligation. A reviewer can follow the payment back through the contract, allotment, apportionment, and original appropriation."
+  },
+  {
+    "id": "water",
+    "label": "Narrative B",
+    "title": "Safe drinking water at a federal site",
+    "paragraph": "A failing treatment system has closed part of a federal recreation site. Congress provides a hypothetical $10 million for the agency’s water-system repairs. OMB apportions $2.5 million, and the agency allots $1 million to the field office overseeing the site. The field office awards a $750,000 contract to replace the treatment equipment, recording an obligation for that amount. Once equipment has been delivered and the first installation milestone accepted, the agency authorizes a $500,000 payment through Treasury. The remaining contract balance is $250,000. The record connects a useful outcome—safe water and a reopened site—to the funding decisions and accepted work behind the payment."
+  },
+  {
+    "id": "clinic",
+    "label": "Narrative C",
+    "title": "Keeping a clinic open",
+    "paragraph": "A federal clinic needs a failed ventilation system replaced so patient rooms can stay in service. A hypothetical $10 million appropriation supports the agency’s facility-repair program. OMB apportions $2.5 million for the period; the agency allots $1 million to the region managing the clinic. A signed $750,000 installation contract creates the obligation. After the first wing is completed and inspected, an approved $500,000 invoice is paid through Treasury, leaving $250,000 of the obligation unpaid. Verification asks whether the payment matches accepted work, the contract was properly approved, and the obligation stayed within the available allotment."
+  }
+]

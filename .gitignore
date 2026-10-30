@@ -7,3 +7,4 @@ vendor/
 node_modules/
 artifacts/
 .DS_Store
+assets/css/main.css

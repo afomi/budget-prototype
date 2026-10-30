@@ -1,53 +1,71 @@
 {
   "schema_version": 1,
   "id": "federal-budget-lifecycle",
-  "title": "Federal budget lifecycle",
+  "title": "Lifecycle of an appropriation",
   "diagram": "diagrams/federal-budget-lifecycle.svg",
   "activities": [
     {
       "id": "agency-formulation",
       "name": "Agency formulation",
-      "owner": "Agency"
+      "owner": "Agency",
+      "example": "The agency identifies a flood-damaged bridge on a federal road and requests $10 million for a bridge-repair program. The request explains the need, proposed work, and estimated cost.",
+      "example_document": "Agency budget request and justification"
     },
     {
       "id": "omb-review",
       "name": "OMB review and passback",
-      "owner": "OMB"
+      "owner": "OMB",
+      "example": "OMB reviews the $10 million request and asks the agency to revise its repair priorities and delivery schedule. The agency submits an updated request; this is still planning for proposed funding.",
+      "example_document": "OMB passback and versioned agency response"
     },
     {
       "id": "presidents-budget",
       "name": "President’s budget",
-      "owner": "Executive"
+      "owner": "Executive",
+      "example": "The President’s budget proposes $10 million for the bridge-repair program and is transmitted to Congress. The proposal does not itself provide spending authority.",
+      "example_document": "President’s budget proposal and transmittal"
     },
     {
       "id": "congressional-consideration",
       "name": "Congressional consideration",
-      "owner": "Congress"
+      "owner": "Congress",
+      "example": "Enacted legislation provides $10 million for the bridge-repair program. The agency records the legal reference, purpose, amount, and availability period before beginning execution.",
+      "example_document": "Enacted appropriation and legal reference"
     },
     {
       "id": "apportionment",
       "name": "Apportionment",
-      "owner": "OMB"
+      "owner": "OMB",
+      "example": "OMB approves a $2.5 million apportionment for the period, subject to its conditions. The approved schedule links this limit to the original $10 million appropriation.",
+      "example_document": "Approved apportionment schedule"
     },
     {
       "id": "allotment",
       "name": "Allotment",
-      "owner": "Agency"
+      "owner": "Agency",
+      "example": "The agency allots $1 million of the apportioned $2.5 million to the district responsible for the bridge. The district’s allotment and its restrictions are recorded in the funds-control system.",
+      "example_document": "Approved allotment document"
     },
     {
       "id": "obligations",
       "name": "Obligations and commitments",
-      "owner": "Agency"
+      "owner": "Agency",
+      "example": "After the necessary reviews, the district signs a $750,000 bridge-repair contract. The agency records this obligation against the $1 million allotment.",
+      "example_document": "Signed contract and recorded obligation"
     },
     {
       "id": "disbursements",
       "name": "Disbursements",
-      "owner": "Agency / Treasury"
+      "owner": "Agency / Treasury",
+      "example": "Engineers accept the first stage of work, and an approved invoice results in a $500,000 payment through Treasury. The contract still has $250,000 obligated but unpaid.",
+      "example_document": "Acceptance record, approved invoice, and payment receipt"
     },
     {
       "id": "closeout",
       "name": "Closeout and audit",
-      "owner": "Agency / Oversight"
+      "owner": "Agency / Oversight",
+      "example": "Later, after the remaining work and final $250,000 payment are complete, staff reconcile the contract and retain its audit trail. The appropriation account closes under its own availability and cancellation rules.",
+      "example_document": "Final reconciliation and audit evidence"
     }
   ],
   "cross_cutting": [
@@ -58,5 +76,6 @@
     "Clawbacks",
     "Sequestration",
     "Oversight and audit"
-  ]
+  ],
+  "timeframe": "Follow one funding request through enactment, execution, and closeout. Appropriations have different availability periods, and their lifecycle can span multiple fiscal years."
 }

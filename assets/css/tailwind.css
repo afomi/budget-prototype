@@ -1,0 +1,30 @@
+/* Jekyll + Tailwind 4 pattern adapted from afomi/jekyll-with-tailwind. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "../../styles.css" layer(components);
+@import "../../flow.css" layer(components);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Keep the existing dense layout; its base styles already handle resets. */
+@source "../../_layouts";
+@source "../../flow.js";
+@source "../../app.js";
+
+@theme {
+  --color-navy: #112e51;
+  --color-red: #c52233;
+  --color-muted: #52647a;
+  --color-line: #d2dbe6;
+  --color-surface: #f4f6f9;
+}
+
+@layer components {
+  :root {
+    --navy: var(--color-navy);
+    --red: var(--color-red);
+    --ink: var(--color-navy);
+    --muted: var(--color-muted);
+    --line: var(--color-line);
+    --surface: var(--color-surface);
+  }
+}

@@ -1,17 +1,20 @@
 # Budget lifecycle, fiscal-year instances, and supporting documents
 
-Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacaville document example, and GitHub PR approval. No backend, database, wallet, or JavaScript packages.
+Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacaville document example, and GitHub PR approval. No backend, database, or wallet. Tailwind is a build dependency; browser behavior uses plain JavaScript.
 
 **Merging a PR means approval of that document version.**
 
 ## The focused $10 demonstration
 
 The primary view is process-oriented:
-- [_data/lifecycle.json](_data/lifecycle.json) defines the reusable lifecycle (the class): activities, owners, and cross-cutting feedback.
-- [_data/fy2028.json](_data/fy2028.json) defines one fiscal-year instance and references that definition.
+- [_data/lifecycle.json](_data/lifecycle.json) defines the reusable request-to-closeout lifecycle for an appropriation: activities, owners, examples, and cross-cutting feedback.
+- [_data/budget_cycles.json](_data/budget_cycles.json) shows concurrent work in an illustrative April 2028 snapshot: prior budgets, current-year execution (FY 2028), the next proposal (FY 2029), and following-year formulation (FY 2030).
+- [_data/fy2028.json](_data/fy2028.json) retains a drill-down history for one budget across its lifecycle.
 - [_data/execution_example.json](_data/execution_example.json) supplies the hypothetical $10 execution records and maps event kinds to lifecycle activities.
 
-A fiscal-year instance includes preparation before its year and closeout afterward. Git budget versions and PR approvals are supporting document mechanics. These ordered JSON files are embedded by Jekyll without a backend or fetch request.
+The primary operating view manages multiple budget cycles in parallel. A fiscal-year budget includes preparation before its year and execution and closeout afterward. Git budget versions and PR approvals are supporting document mechanics. These ordered JSON files are embedded by Jekyll without a backend or fetch request.
+
+Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include the supporting document at each stage, and distinguish a proposed request from enacted authority.
 
 An optional BPMN export from Touchpoints can formalize the same lifecycle. It is not required for this prototype; keep a future BPMN file alongside the SVG rather than maintaining a separate competing process model.
 
@@ -74,10 +77,22 @@ For concurrent requests, use a short-lived change/fy2025-26/topic branch from ap
 
 ## Local preview
 
+    npm ci
     bundle install
     bundle exec jekyll serve --host 127.0.0.1 --port 4173
 
 Open http://127.0.0.1:4173. The document-review page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
+
+## Jekyll + Tailwind
+
+The build follows [afomi/jekyll-with-tailwind](https://github.com/afomi/jekyll-with-tailwind): CSS theme tokens and a Jekyll post-write hook compile a single stylesheet. The CLI is installed locally and pinned in the lockfile; a missing compiler fails the build instead of fetching tools implicitly. No S3 hosting configuration is included.
+
+Tailwind 4 utilities style the overlapping-cycle and narrative sections. The existing dense styles are imported into the components layer. Preflight is omitted to preserve their spacing and browser defaults. Both page layouts load assets/css/main.css, generated automatically by Jekyll.
+
+    npm run build:css
+    npm run build
+
+Three hypothetical narrative variants live in [_data/narratives.json](_data/narratives.json). Each uses $10 million → $2.5 million → $1 million → $750,000 → $500,000; the interactive $10 example has identical proportions.
 
 ## Deterministic JSON
 
