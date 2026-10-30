@@ -14,7 +14,7 @@ The primary view is process-oriented:
 
 The primary operating view manages multiple budget cycles in parallel. A fiscal-year budget includes preparation before its year and execution and closeout afterward. Git budget versions and PR approvals are supporting document mechanics. These ordered JSON files are embedded by Jekyll without a backend or fetch request.
 
-Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include the supporting document at each stage, and distinguish a proposed request from enacted authority.
+Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include a simple packet, memo, document, screen, or allotment decision tree. Readable draft excerpts and downloadable Markdown samples live in examples/lifecycle/; the first packet also has a CSV estimate and briefing outline. These are illustrative artifacts, not official forms or actual agency records. The previews distinguish a proposed request from enacted authority.
 
 An optional BPMN export from Touchpoints can formalize the same lifecycle. It is not required for this prototype; keep a future BPMN file alongside the SVG rather than maintaining a separate competing process model.
 

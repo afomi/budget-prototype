@@ -4,17 +4,39 @@ const F=BudgetFlow,$=id=>document.getElementById(id);
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=cents=>"$"+(cents/100).toFixed(2);
 const lifecycleDefinition=JSON.parse($("lifecycle-definition").textContent);
-document.querySelectorAll("[data-activity-id]").forEach(button=>button.addEventListener("click",()=>{
- const index=lifecycleDefinition.activities.findIndex(activity=>activity.id===button.dataset.activityId);
- if(index<0)return;
- const activity=lifecycleDefinition.activities[index];
- document.querySelectorAll("[data-activity-id]").forEach(item=>item.setAttribute("aria-pressed",String(item===button)));
+function artifactIcon(name){
+ return '<svg class="artifact-glyph" aria-hidden="true"><use href="#artifact-'+esc(name)+'"></use></svg>';
+}
+function renderArtifact(activity){
+ const a=activity.artifact;
+ let html='<div class="artifact-preview '+(a.kind==="screen"?"artifact-screen":"")+'"><div class="artifact-preview-heading">'+artifactIcon(a.icon)+'<div><span class="artifact-sample">FICTIONAL SAMPLE</span><h4>'+esc(a.title)+'</h4></div></div><p class="artifact-reference">'+esc(a.reference)+'</p>';
+ if(a.files)html+='<div class="artifact-files">'+a.files.map(file=>'<a href="'+esc(file.path)+'" download>'+artifactIcon("document")+'<span><strong>'+esc(file.title)+'</strong><small>'+esc(file.format)+'</small></span><span aria-hidden="true">↓</span></a>').join("")+'</div>';
+ if(a.kind==="decision"){
+  const d=a.decision;
+  html+='<div class="decision-tree"><div class="decision-node">'+esc(d.start)+'</div><span class="decision-arrow" aria-hidden="true">↓</span><div class="decision-question">'+esc(d.question)+'</div><div class="decision-branches"><div><span>Yes ↓</span><div class="decision-node">'+esc(d.yes)+'</div></div><div><span>No ↓</span><div class="decision-node decision-hold">'+esc(d.no)+'</div></div></div><p>'+esc(d.remainder)+'</p></div>';
+ }else{
+  html+='<table class="artifact-table"><tbody>'+a.rows.map(([label,value])=>'<tr><th>'+esc(label)+'</th><td>'+esc(value)+'</td></tr>').join("")+'</tbody></table>';
+  if(a.decisions)html+='<div class="artifact-directions">'+a.decisions.map(([issue,direction])=>'<p><strong>'+esc(issue)+'</strong> '+esc(direction)+'</p>').join("")+'</div>';
+  html+='<p class="artifact-body">'+esc(a.body)+'</p>';
+ }
+ html+='<details class="artifact-draft"><summary>Read sample draft</summary><pre>'+esc(a.draft)+'</pre></details><a class="artifact-download" href="'+esc(a.download)+'" download>Download sample draft (.md) ↓</a></div>';
+ $("lifecycle-artifact").innerHTML=html;
+ $("lifecycle-example-format").textContent=a.format;
+ $("lifecycle-example-source").innerHTML=a.source_url?'<a href="'+esc(a.source_url)+'" target="_blank" rel="noreferrer">'+esc(a.source_label)+' ↗</a>':"";
+}
+function selectActivity(index){
+ const activity=lifecycleDefinition.activities[index];if(!activity)return;
+ document.querySelectorAll("[data-activity-id]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.activityId===activity.id)));
  $("lifecycle-example-step").textContent="EXAMPLE "+(index+1)+" OF "+lifecycleDefinition.activities.length+" · BRIDGE-REPAIR PROGRAM";
  $("lifecycle-example-title").textContent=activity.name;
  $("lifecycle-example-text").textContent=activity.example;
  $("lifecycle-example-document").textContent=activity.example_document;
+ renderArtifact(activity);
+}
+document.querySelectorAll("[data-activity-id]").forEach(button=>button.addEventListener("click",()=>{
+ selectActivity(lifecycleDefinition.activities.findIndex(activity=>activity.id===button.dataset.activityId));
 }));
-
+selectActivity(0);
 const diagramLink=$("open-lifecycle-diagram"),diagramModal=$("lifecycle-diagram-modal");
 diagramLink.addEventListener("click",event=>{
  if(typeof diagramModal.showModal!=="function")return;
