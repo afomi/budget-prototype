@@ -3,6 +3,23 @@
 const F=BudgetFlow,$=id=>document.getElementById(id);
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=cents=>"$"+(cents/100).toFixed(2);
+const diagramLink=$("open-lifecycle-diagram"),diagramModal=$("lifecycle-diagram-modal");
+diagramLink.addEventListener("click",event=>{
+ if(typeof diagramModal.showModal!=="function")return;
+ event.preventDefault();diagramModal.showModal();
+ diagramLink.setAttribute("aria-expanded","true");document.documentElement.classList.add("modal-open");
+});
+$("close-lifecycle-diagram").addEventListener("click",()=>diagramModal.close());
+diagramModal.addEventListener("click",event=>{
+ if(event.target!==diagramModal)return;
+ const bounds=diagramModal.getBoundingClientRect();
+ if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)diagramModal.close();
+});
+diagramModal.addEventListener("close",()=>{
+ diagramLink.setAttribute("aria-expanded","false");document.documentElement.classList.remove("modal-open");
+ diagramLink.focus({preventScroll:true});
+});
+
 let demo,selected="PAY-001",attempt=0,busy=false;
 function message(text,error=false){$("flow-message").textContent=text;$("flow-message").className=error?"flow-message error":"flow-message";}
 function save(name,value){
