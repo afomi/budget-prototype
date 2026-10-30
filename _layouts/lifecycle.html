@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>$10 funding lifecycle · Budget Atlas</title>
+ <meta name="description" content="A lean hypothetical funding lifecycle with traceability, signed demo approvals, adjustments, and exceptions.">
+ <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="flow.css">
+ <script id="flow-fixture" type="application/json">{{ site.data.lifecycle | jsonify }}</script>
+ <script src="flow-model.js" defer></script><script src="flow.js" defer></script>
+</head>
+<body>
+ <a class="skip" href="#main">Skip to content</a>
+ <header><a class="brand" href="./">Budget Atlas</a><span class="badge">Local simulation · no blockchain network</span></header>
+ <main id="main">
+  {{ content }}
+  <nav class="flow-nav" aria-label="Prototype views"><strong>Funding lifecycle</strong><a href="document-review.html">Budget document review</a><a href="https://github.com/afomi/budget-prototype/pull/1">GitHub sample PR ↗</a></nav>
+  <div class="intro"><div><p class="eyebrow">ONE APPROPRIATION. FIVE LINKED EVENTS.</p><h1>Follow <em>$10.</em></h1><p>Trace a payment to its funding decisions. Verify its source and approval.<br>Preserve an adjustment. Flag an exception.</p></div><span class="small muted">Hypothetical FY 2028 · USD</span></div>
+  <section aria-label="Funding limits and payments">
+   <div id="flow-stages" class="flow-stages"></div>
+   <p class="micro">These are nested limits and cumulative records; do not add the five amounts together.</p>
+   <p id="remainder-note" class="micro"></p>
+  </section>
+  <section class="panel controls" aria-label="Controlled event submission">
+   <div><h3>Submit selected events</h3><p class="micro">Source records come from simulated systems. The gateway checks source permission, a signature, document approval, and budget consistency.</p></div>
+   <div class="control-buttons"><button type="button" id="run-basic">Run remaining basic events</button><button type="button" id="apply-adjustment">Approved reapportionment: +$0.50</button><button type="button" id="audit-flow" class="primary">Verify accepted history</button></div>
+   <div class="invalid-controls"><span>Monitoring cases</span><button type="button" data-invalid="excess">$2 obligation</button><button type="button" data-invalid="source">Unauthorized source</button><button type="button" data-invalid="approval">Missing approval</button><button type="button" data-invalid="tamper">Changed after signing</button></div>
+  </section>
+  <p id="flow-message" class="flow-message" role="status" aria-live="polite">Preparing the demo…</p>
+  <div class="flow-columns">
+   <section class="panel"><div class="panel-heading"><strong>Funding history</strong><span id="flow-count" class="muted"></span></div><div class="diff-scroll"><table class="events-table"><thead><tr><th>Event</th><th>Type</th><th>Amount</th><th>Authority</th><th>Revises</th><th>Source signer</th></tr></thead><tbody id="flow-events"></tbody></table></div><div class="flow-trace-section"><h3 id="trace-title">Trace the payment</h3><div id="flow-trace" class="flow-trace"></div><p id="verification-note" class="micro"></p></div></section>
+   <section class="panel exception-panel"><div class="panel-heading"><strong>Exceptions</strong><span id="exception-count" class="pill">0</span></div><div id="flow-exceptions"></div><p class="micro">Flagging rejects the evidence submission. It does not reverse a transaction in a financial system.</p></section>
+  </div>
+  <section class="reference-section"><div class="request-heading"><div><p class="eyebrow">KEEP THE FINANCIAL RECORD AND EVIDENCE SEPARATE</p><h2>The record stays at its source.</h2></div></div>
+   <div class="flow-columns records-columns">
+    <section class="panel"><div class="panel-heading"><strong>Off-chain source record</strong><span class="muted small">Simulated authoritative system</span></div><pre id="source-record" class="json-record"></pre></section>
+    <section class="panel"><div class="panel-heading"><strong>Verification receipt</strong><span class="muted small">Simulated permissioned evidence log</span></div><pre id="evidence-record" class="json-record"></pre></section>
+   </div>
+   <div class="control-buttons exports"><button type="button" id="export-flow">↓ Export evidence + public registry</button><button type="button" id="export-sources">↓ Export source records separately</button><button type="button" id="reset-flow">Reset to appropriation</button></div>
+  </section>
+  <details class="technical-note"><summary>What this prototype proves and simulates</summary><p>Traceability follows explicit parent and revision references. Authorization verifies ECDSA signatures against a local allowlist and checks a separate approval signature bound to the exact document digest. The approval signature simulates an approved/merged document; the browser does not merge a GitHub PR.</p><p>The signed records and hash-linked receipts are real computations. Source identities, approvals, financial systems, and the permissioned ledger are local simulations. Keys are generated for this session. Real identity requires a trusted external key registry and approval process. There is no distributed consensus, chain anchoring, money movement, or UTXO transaction here.</p><p>Reapportionment appends a new ceiling and references the earlier decision. It cannot fall below existing allotments or exceed the appropriation. Monitoring cases demonstrate invalid source evidence; they are retained as exceptions without changing the accepted authority history.</p><p>The model covers this basic scenario only. Production funds-control law, account lifecycle, payment reconciliation, and network integration remain outside this demonstration. The evidence export omits source financial records; verification needs those separately and a trusted registry.</p></details>
+  <footer><span>Jekyll + plain JavaScript · hypothetical records</span><a href="document-review.html">Vacaville document-review example</a><span>No state survives a refresh.</span></footer>
+ </main>
+ <noscript><p>This local simulation needs JavaScript and Web Crypto.</p></noscript>
+</body>
+</html>

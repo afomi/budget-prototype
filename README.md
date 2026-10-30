@@ -1,10 +1,33 @@
-# Budget documents as pull requests
+# Funding lifecycle and budget document review
 
-Lean Jekyll prototype, a sourced three-row Vacaville budget excerpt, and a real GitHub document-review workflow. No backend, database, wallet, or JavaScript packages.
+Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacaville document example, and GitHub PR approval. No backend, database, wallet, or JavaScript packages.
 
 **Merging a PR means approval of that document version.**
 
-## The sample
+## The focused $10 demonstration
+
+The scenario is the ordered JSON document in [_data/lifecycle.json](_data/lifecycle.json), embedded by Jekyll without a backend or fetch request. Review and version this file in GitHub alongside the budget examples.
+
+The main page uses one hypothetical appropriation: $10 → $2.50 apportionment → $1 allotment → $0.75 obligation → $0.50 payment. These are nested limits and cumulative records, not amounts to sum.
+
+- Traceability: select the obligation or payment and follow parent references to the appropriation.
+- Authorization: source signatures are checked against a local allowlist; a separate approval signature binds the exact document digest.
+- Change management: append AP-002 to revise the apportionment from $2.50 to $3.00 while preserving AP-001 and its original receipt.
+- Continuous monitoring: submit a $2 obligation against the remaining $0.25 allotment, an unauthorized source, a missing approval, or a record changed after signing. Each is flagged without changing accepted authority.
+
+The financial records live in a simulated source-record store. The verification log contains hashes, signer references/signatures, lineage, and prior-receipt links. It omits budget amounts. The two stores export separately.
+
+This is a simulated permissioned ledger, not a blockchain network. Signatures and SHA-256 digests are computed with Web Crypto using session-only demo keys. Financial systems, institutional identities, and document approval are simulated. The local approval signer stands in for a reviewed/merged document; it does not assert that a GitHub merge occurred. No money moves. A real deployment needs a trusted key registry and network adapter.
+
+Run the independent verifier on the two exported files:
+
+    node scripts/verify-flow.js verification-evidence.json source-records.json
+
+It uses only public keys, source records, and evidence. It verifies relative to the supplied demo registry; it does not authenticate that registry against a real institution.
+
+The Vacaville example remains at document-review.html and in the real sample GitHub PR. The $10 flow does not use real financial records.
+
+## The Vacaville document sample
 
 Source: Vacaville FY2025–26 Final Budget Document, Lighting & Landscaping Districts, printed p.123 / PDF p.175, FY 2025/26 Proposed Budget column.
 
@@ -47,7 +70,7 @@ For concurrent requests, use a short-lived change/fy2025-26/topic branch from ap
     bundle install
     bundle exec jekyll serve --host 127.0.0.1 --port 4173
 
-Open http://127.0.0.1:4173. The page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
+Open http://127.0.0.1:4173. The document-review page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
 
 ## Deterministic JSON
 
