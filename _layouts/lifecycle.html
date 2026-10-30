@@ -14,10 +14,11 @@
   <symbol id="artifact-document" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v13H6zM14 3v6h5M9 13h7M9 17h7"/></g></symbol>
   <symbol id="artifact-packet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h12v15M4 7h12v14H4zM7 11h6M7 15h6"/></g></symbol>
   <symbol id="artifact-screen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="1"/><path d="M8 22h8M12 18v4M5 7h14M5 11h5M14 11h5"/></g></symbol>
+  <symbol id="artifact-review" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10M18 7v2c0 5-12 3-12 8"/></g></symbol>
   <symbol id="artifact-tree" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5"/><rect x="2" y="17" width="7" height="5"/><rect x="15" y="17" width="7" height="5"/><path d="M12 7v5M5.5 17v-5h13v5"/></g></symbol>
  </defs></svg>
  <a class="skip" href="#main">Skip to content</a>
- <header class="flow-header"><a class="brand" href="./">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><strong>Overview</strong><a href="#process-definition">Lifecycle</a><a href="#year-instance">Budget cycles</a><a href="#execution-example">$10 execution example</a><a href="document-review.html">Document review</a><a href="https://github.com/afomi/budget-prototype/pull/1">GitHub sample PR ↗</a></nav><span class="badge">Local simulation · no blockchain network</span></header>
+ <header class="flow-header"><a class="brand" href="./">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><strong>Overview</strong><a href="#process-definition">Lifecycle</a><a href="#year-instance">Budget cycles</a><a href="#execution-example">$10 execution example</a><a href="storyboard.html">Story</a><a href="budget-request.html">Budget request</a><a href="document-review.html">Document review</a><a href="https://github.com/afomi/budget-prototype/pull/1">GitHub sample PR ↗</a></nav><span class="badge">Local simulation · no blockchain network</span></header>
  <main id="main">
   {{ content }}
 
@@ -25,7 +26,7 @@
   <section id="process-definition" class="process-section" aria-labelledby="process-title">
    <div class="request-heading"><div><p class="eyebrow">REQUEST → AUTHORITY → EXECUTION → CLOSEOUT</p><h2 id="process-title">{{ site.data.lifecycle.title }}</h2></div><a id="open-lifecycle-diagram" href="{{ site.data.lifecycle.diagram }}" class="text-link" aria-haspopup="dialog" aria-controls="lifecycle-diagram-modal" aria-expanded="false">Open lifecycle SVG ↗</a></div>
    <p class="micro mb-4">{{ site.data.lifecycle.timeframe }}</p>
-   <p class="micro mb-3">Select a step to see the same bridge-repair example from 1–9.</p>
+   <p class="micro mb-3">Select a step to see the same bridge-repair example from 1–9. <a href="storyboard.html">Read it as one story →</a></p>
    <div class="process-scroll"><div class="process-path">{% for activity in site.data.lifecycle.activities %}<button type="button" class="process-activity" id="activity-{{ activity.id }}" data-activity-id="{{ activity.id }}" aria-controls="lifecycle-example" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span class="activity-number">{{ forloop.index }}</span><svg class="activity-icon" aria-hidden="true"><use href="#artifact-{{ activity.artifact.icon }}"></use></svg><span class="activity-title">{{ activity.name }}</span><small>{{ activity.owner }}</small></button>{% endfor %}</div></div>
    {% assign first_activity = site.data.lifecycle.activities | first %}
    <div id="lifecycle-example" class="panel mt-3 border-l-[3px] border-l-red p-4" role="region" aria-live="polite" aria-labelledby="lifecycle-example-title">
@@ -37,6 +38,7 @@
       <p class="micro">What this looks like</p><p id="lifecycle-example-format" class="mb-0 mt-1 text-[11px] leading-[1.8] text-muted">{{ first_activity.artifact.format }}</p>
       <p class="micro">Supporting record: <span id="lifecycle-example-document">{{ first_activity.example_document }}</span></p>
       <p class="micro" id="lifecycle-example-source"></p>
+      <div class="verification-fit"><strong>Where verification fits</strong><p id="lifecycle-example-verification">{{ first_activity.verification_fit }}</p></div>
      </div>
      <div id="lifecycle-artifact"></div>
     </div>
@@ -84,7 +86,7 @@
    <section class="panel"><div class="panel-heading"><strong>Funding history</strong><span id="flow-count" class="muted"></span></div><div class="diff-scroll"><table class="events-table"><thead><tr><th>Event</th><th>Type</th><th>Amount</th><th>Authority</th><th>Revises</th><th>Source signer</th></tr></thead><tbody id="flow-events"></tbody></table></div><div class="flow-trace-section"><h3 id="trace-title">Trace the payment</h3><div id="flow-trace" class="flow-trace"></div><p id="verification-note" class="micro"></p></div></section>
    <section class="panel exception-panel"><div class="panel-heading"><strong>Exceptions</strong><span id="exception-count" class="pill">0</span></div><div id="flow-exceptions"></div><p class="micro">Flagging rejects the evidence submission. It does not reverse a transaction in a financial system.</p></section>
   </div>
-  <section class="reference-section"><div class="request-heading"><div><p class="eyebrow">KEEP THE FINANCIAL RECORD AND EVIDENCE SEPARATE</p><h2>The record stays at its source.</h2></div></div>
+  <section class="reference-section"><div class="request-heading"><div><p class="eyebrow">KEEP THE FINANCIAL RECORD AND EVIDENCE SEPARATE</p><h2>Review in Git. Verify selected milestones.</h2><p class="micro">Drafts, comments, appeals, and revision history stay in Git. Financial records stay in their authoritative systems. A shared ledger is an option for selected approved handoffs when independent participants need common verification; a signed log may already meet the need.</p></div></div>
    <div class="flow-columns records-columns">
     <section class="panel"><div class="panel-heading"><strong>Off-chain source record</strong><span class="muted small">Simulated authoritative system</span></div><pre id="source-record" class="json-record"></pre></section>
     <section class="panel"><div class="panel-heading"><strong>Verification receipt</strong><span class="muted small">Simulated permissioned evidence log</span></div><pre id="evidence-record" class="json-record"></pre></section>

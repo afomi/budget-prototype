@@ -1,23 +1,27 @@
-# Passback decision memo
+# Sample passback review summary
 
-> Fictional sample for the Budget Atlas prototype. Not an official document.
+> Fictional walkthrough. No actual GitHub review, merge, or OMB decision is asserted.
 
-PB-2028-017 · pre-decisional sample
+## Agency request
 
-## Context
+BR-2028-0042: $10 million for the bridge-repair program.
 
-OMB reviews the $10 million request and asks the agency to revise its repair priorities and delivery schedule. The agency submits an updated request; this is still planning for proposed funding.
+## OMB review — changes requested
 
-## Sample record
+Retain the $10 million planning level. Prioritize essential-access routes and revise the estimating basis and quarterly delivery plan.
 
-- **To:** Agency budget director
-- **From:** OMB budget review · sample
-- **Planning level:** $10,000,000 proposed
+### Line-item comment: priority-bridge-repairs / justification
 
-Agency response v2: revised the bridge priority list and cost schedule; added quarterly phasing. This planning exchange does not enact an appropriation.
+Replace uniform allowances with condition-based estimates. Explain how the priority list protects school-bus and emergency access.
 
-## Passback directions
+## Agency response — revision v2
 
-- **Funding level:** Retain the proposed $10 million program level.
-- **Priorities:** Put routes serving essential access first.
-- **Revision requested:** Replace uniform allowances with condition-based estimates and show quarterly phasing.
+Revision v2 updates the justification and delivery milestones. The $10 million request is unchanged. This walkthrough accepts the direction; an appeal could instead be attached to the review.
+
+## Settlement
+
+The reviewer approves and merges the revised request document. This approves a planning document; it does not enact an appropriation.
+
+## Optional independent verification
+
+An approved-document digest may later be anchored when a shared independently verifiable history is useful. Draft comments and revision discussions remain in Git. No blockchain submission is required for this review.

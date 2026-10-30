@@ -22,3 +22,7 @@ Restore a flood-damaged federal-road crossing used by school buses and emergency
 - Justification narrative — Word / PDF-style working document
 - Estimate workbook — Spreadsheet / budget-table extract
 - Leadership briefing — Presentation outline
+
+## Structured request
+
+The proposed line items are also available as 02-request-v1.json for PR review.
