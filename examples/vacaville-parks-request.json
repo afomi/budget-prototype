@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "request_id": "VAC-2025-26-PARKS",
+  "fiscal_year": 2026,
+  "agency": "City of Vacaville - Public Works",
+  "account": "Lighting & Landscaping Districts (three-zone excerpt)",
+  "currency": "USD",
+  "purpose": "Park maintenance; FY 2025/26 Proposed Budget column, printed page 123.",
+  "line_items": [
+    {
+      "id": "alamo-creek-park",
+      "amount_cents": 24627900,
+      "description": "Alamo Creek Park",
+      "justification": "Source functional-distribution amount; maintenance zone, not capital spending."
+    },
+    {
+      "id": "nelson-park",
+      "amount_cents": 16277800,
+      "description": "Nelson Park",
+      "justification": "Source functional-distribution amount; maintenance zone, not capital spending."
+    },
+    {
+      "id": "patwin-park",
+      "amount_cents": 15557500,
+      "description": "Patwin Park",
+      "justification": "Hypothetical request: add $5,000 for maintenance at Patwin Park. Funding source and scope require document review."
+    }
+  ]
+}

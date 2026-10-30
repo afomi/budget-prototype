@@ -1,0 +1,14 @@
+{
+  "name": "budget-atlas-prototype",
+  "private": true,
+  "scripts": {
+    "dev": "bundle exec jekyll serve --host 127.0.0.1 --port 4173",
+    "diagrams": "node scripts/generate-diagrams.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check app.js && node --check review.js",
+    "validate:budgets": "node scripts/budget.js check",
+    "format:budgets": "node scripts/budget.js format",
+    "budget:summary": "node scripts/budget.js summary",
+    "budget:evidence": "node scripts/budget.js evidence"
+  }
+}

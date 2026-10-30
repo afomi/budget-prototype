@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight prototype for reviewing budget documents as pull requests.">
+  <title>{{ page.title | default: site.title | escape }}</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="sample-budget.js" defer></script>
+  <script src="review.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header><a class="brand" href="./"><span aria-hidden="true">B↗</span> Budget Atlas</a><span class="badge">Local prototype</span></header>
+  <main id="main">
+    {{ content }}
+    <div class="intro"><div><p class="eyebrow">A SMALLER, CLEARER BUDGET WORKFLOW</p><h1>Request. Review. <em>Record.</em></h1><p>A budget request as a pull request. Every line item open to review.</p></div><a href="#diagrams" class="text-link">Explore the budget flow ↗</a></div>
+    <section aria-labelledby="request-title">
+      <div class="request-heading"><div><p class="eyebrow">VACAVILLE SAMPLE · FY 2025–26</p><h2 id="request-title">Patwin Park maintenance: +$5,000</h2><p class="branch"><span id="request-status" class="pill">Open</span> <code>budget/fy2025-26/working</code> → <code>budget/fy2025-26/approved</code></p></div><button id="export-json" type="button">↓ Export JSON</button></div>
+      <div class="summary"><div><span>Base request</span><strong id="base-total"></strong></div><div><span>Proposed request</span><strong id="proposal-total"></strong></div><div><span>Change</span><strong id="delta"></strong></div><p>Three real source rows; one hypothetical change.<br>Merging approves this document. This is an unofficial prototype.</p></div>
+      <div class="review-layout">
+        <div>
+          <section class="panel" aria-label="Budget JSON diff">
+            <div class="panel-heading"><strong>budgets/fy2025-26/vacaville-parks.json</strong><span id="revision" class="muted"></span></div>
+            <div class="file-note"><span class="minus">− Base</span><span class="plus">+ Proposal</span><span>Click a line number to review its line item.</span></div>
+            <div class="diff-scroll"><table class="diff" aria-label="JSON changes"><thead class="sr-only"><tr><th>Base line</th><th>New line</th><th>Change</th><th>JSON</th></tr></thead><tbody id="diff-body"></tbody></table></div>
+            <p class="file-footer">Stable field order · items sorted by ID · integer cents · UTF-8 · 2 spaces · LF</p>
+          </section>
+          <section class="panel discussion" aria-labelledby="discussion-title">
+            <div class="panel-heading"><strong id="discussion-title">Line-item review</strong><span id="thread-count" class="muted"></span></div>
+            <div id="threads"></div>
+            <form id="comment-form">
+              <div class="fields"><label>Line item<select id="comment-item"></select></label><label>Demo reviewer<select id="comment-role"></select></label></div>
+              <label for="comment-body" class="sr-only">Review comment</label><textarea id="comment-body" placeholder="Ask a question or request a change…" rows="2" maxlength="2000" required></textarea>
+              <div class="comment-actions"><label class="checkbox"><input id="blocking" type="checkbox"> Blocking comment</label><button type="submit">Add comment</button></div>
+            </form>
+          </section>
+        </div>
+        <aside>
+          <section class="panel aside-panel" aria-label="Review and approval">
+            <h3>Ready to merge?</h3><div id="checks"></div>
+            <label>Act as a demo reviewer<select id="approval-role"></select></label>
+            <button id="approve" type="button" class="full">Approve this revision</button>
+            <button id="merge" type="button" class="primary full">Merge approved request ↗</button>
+            <p class="micro">This page simulates review. <a href="https://github.com/afomi/budget-prototype/pulls">Review the real GitHub PR ↗</a>.</p>
+          </section>
+          <details class="panel editor"><summary>Revise a line item</summary><form id="edit-form"><label>Line item<select id="edit-item"></select></label><label>Amount in USD<input id="edit-amount" type="text" inputmode="decimal" required></label><label>Justification<textarea id="edit-reason" rows="3" maxlength="2000" required></textarea></label><button type="submit" class="full">Commit revision</button><p class="micro">An edit clears approvals and reopens blocking threads.</p></form></details>
+          <div class="callout"><p class="eyebrow">FUTURE VERIFICATION</p><h3>Keep review familiar.<br>Anchor approved records.</h3><p>Hash the exact approved JSON, then link its approval evidence. Blockchain can make later changes detectable.</p><a href="#blockchain">Where a UTXO chain fits →</a></div>
+        </aside>
+      </div>
+      <section id="merge-evidence" class="merge-evidence panel" aria-live="polite" hidden></section>
+    </section>
+    <p class="micro">Source: Vacaville FY2025–26 Final Budget Document, printed p.123 / PDF p.175, “FY 2025/26 Proposed Budget” column. Alamo Creek $246,279; Nelson $162,778; Patwin $150,575. <a href="sources/vacaville-fy2025-26.md">Provenance</a>.</p>
+    <details class="technical-note"><summary>Branch naming and document approval</summary><p><code>main</code> holds prototype code. <code>budget/fy2025-26/approved</code> holds the approved document version; <code>budget/fy2025-26/working</code> holds the next proposed version. Open a PR from working to approved. Merge means the document is approved. Future years use the same pattern, for example <code>budget/fy2026-27/working</code>. Work-in-progress belongs in a draft PR rather than another branch name.</p></details>
+    <section id="diagrams" class="reference-section" aria-labelledby="diagram-title">
+      <div class="request-heading"><div><p class="eyebrow">THE PROCESS AROUND THE REQUEST</p><h2 id="diagram-title">Two views of the federal budget.</h2></div><span class="muted small">Editable vector reconstructions</span></div>
+      <div class="diagram-grid">
+        <a class="panel diagram" href="diagrams/federal-budget-lifecycle.svg" target="_blank" rel="noreferrer"><img src="diagrams/federal-budget-lifecycle.svg" alt="Federal budget lifecycle: formulation, congressional consideration, execution, and closeout" loading="lazy"><span><strong>Budget lifecycle</strong><span>Open SVG ↗</span></span></a>
+        <a class="panel diagram" href="diagrams/federal-budget-timeline.svg" target="_blank" rel="noreferrer"><img src="diagrams/federal-budget-timeline.svg" alt="Illustrative FY 2028 budget process timeline by agency, OMB, Congress, and execution" loading="lazy"><span><strong>FY 2028 timeline</strong><span>Open SVG ↗</span></span></a>
+      </div>
+      <p class="micro">Rebuilt as native SVG text and shapes. The duplicate closeout stage was consolidated; timeline assumptions and changes are noted in the diagrams.</p>
+    </section>
+    <section id="blockchain" class="reference-section" aria-labelledby="blockchain-title">
+      <p class="eyebrow">WHERE VERIFICATION EARNS ITS PLACE</p><h2 id="blockchain-title">Git for review. A UTXO chain for selected evidence.</h2>
+      <div class="blockchain-grid"><article><span class="step">01 / START HERE</span><h3>Anchor approved decisions</h3><p>After approval, commit a document digest and references to the version, signers, and prior decision. Drafts and line-item discussions stay in Git and the review system.</p></article><article><span class="step">02 / STRONGEST HANDOFFS</span><h3>Trace authority through execution</h3><p>Enacted appropriation → apportionment → allotment → obligation. A future application model could consume one state and create constrained successor states with an explicit remainder.</p></article><article><span class="step">03 / KEEP THE BOUNDARY</span><h3>Attest to payments</h3><p>Link independently reconciled payment receipts to obligations. Treasury systems move money. A blockchain record supports verification of evidence.</p></article></div>
+      <details class="technical-note"><summary>UTXO model and open decisions</summary><p>Represent budget authority in an application schema, with account, fiscal year, purpose, availability period, parent reference, and amount in integer cents. Keep native chain coins and transaction fees separate. Application rules must enforce amount conservation and inherited restrictions; UTXO consensus alone does not enforce budget law.</p><p>Approval, issuance, signer governance, correction events, privacy, off-chain evidence retrieval, and confirmation policy need to be defined for the selected chain. A signed append-only log may be sufficient if independent parties do not need a shared ledger.</p><p>Expiration and cancellation are different states. Existing obligations may be paid after the new-obligation period ends, subject to applicable rules. Legal approvals and trusted attestations still determine whether recorded events are valid.</p></details>
+      <p class="sources">Process references: <a href="https://www.whitehouse.gov/wp-content/uploads/2025/08/s10.pdf" target="_blank" rel="noreferrer">OMB A–11 §10</a> · <a href="https://files.gao.gov/reports/GAO-23-106561/index.html" target="_blank" rel="noreferrer">GAO budget terms</a> · <a href="https://developer.bitcoin.org/devguide/transactions.html" target="_blank" rel="noreferrer">UTXO transactions</a>. Blockchain placement is a design proposal.</p>
+    </section>
+    <footer><span>Budget Atlas · lightweight Jekyll prototype</span><button type="button" id="reset" class="text-button">Reset demo ↺</button><span>No data is saved. Refresh to start over.</span></footer>
+  </main>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
+  <noscript><p>This prototype needs JavaScript for review interactions. The SVG diagrams can be opened directly.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,24 @@
+title: Budget Atlas
+description: A budget document PR review prototype
+url: ""
+baseurl: ""
+destination: _site
+encoding: utf-8
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - budget.schema.json
+  - README.md
+  - docs
+  - scripts
+  - tests
+  - artifacts
+  - vendor
+  - .bundle
+  - .gitignore
+  - .jekyll-cache
+  - .DS_Store

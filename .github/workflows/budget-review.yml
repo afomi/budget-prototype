@@ -1,0 +1,46 @@
+name: Budget documents
+on:
+  pull_request:
+    branches: ["main", "budget/**"]
+  push:
+    branches: ["main", "budget/**"]
+permissions:
+  contents: read
+jobs:
+  budget-document:
+    name: Budget document
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm run validate:budgets
+      - run: npm test
+      - run: npm run check
+      - name: Summarize the proposed document changes
+        if: github.event_name == 'pull_request'
+        env:
+          BUDGET_BASE_REF: ${{ github.event.pull_request.base.sha }}
+        run: npm run budget:summary
+  approval-evidence:
+    name: Approved document evidence
+    if: github.event_name == 'push' && startsWith(github.ref_name, 'budget/') && endsWith(github.ref_name, '/approved')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm run validate:budgets
+      - name: Hash the exact approved document bytes
+        env:
+          BUDGET_BRANCH: ${{ github.ref_name }}
+          BUDGET_COMMIT_SHA: ${{ github.sha }}
+        run: npm run budget:evidence
+      - uses: actions/upload-artifact@v4
+        with:
+          name: approved-document-${{ github.sha }}
+          path: artifacts/approval-evidence.json
