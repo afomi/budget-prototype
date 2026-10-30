@@ -115,6 +115,8 @@ The evidence command works on an approved budget branch and refuses documents th
 
 ## Later blockchain use
 
+See the [transaction outline for a 330,000-sat / $330 million experiment](docs/blockchain-transaction-outline.md): selected UTXO transitions, exact remainders, fees, and the steps that stay in Git.
+
 Start with a working review process in Git. Use an approved-document digest linked to its review, commit, and approval evidence when independent verification adds value. Draft review activity does not need blockchain transactions. Agency-local controls may be served by a signed log; shared execution handoffs are candidates for a common verification layer. Keep drafts, comments, and detailed records in Git or their authoritative systems. No blockchain transaction is implemented.
 
 A UTXO model for allocations and obligations can be explored separately once document review works. Native coins/fees and budget dollars remain distinct. Blockchain does not establish source-document truth or independently verify a payment.
