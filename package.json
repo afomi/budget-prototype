@@ -9,6 +9,12 @@
     "validate:budgets": "node scripts/budget.js check",
     "format:budgets": "node scripts/budget.js format",
     "budget:summary": "node scripts/budget.js summary",
-    "budget:evidence": "node scripts/budget.js evidence"
+    "budget:evidence": "node scripts/budget.js evidence",
+    "build:css": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/main.css --minify",
+    "build": "bundle exec jekyll build"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
+    "tailwindcss": "4.3.3"
   }
 }

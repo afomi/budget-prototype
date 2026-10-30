@@ -3,6 +3,18 @@
 const F=BudgetFlow,$=id=>document.getElementById(id);
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=cents=>"$"+(cents/100).toFixed(2);
+const lifecycleDefinition=JSON.parse($("lifecycle-definition").textContent);
+document.querySelectorAll("[data-activity-id]").forEach(button=>button.addEventListener("click",()=>{
+ const index=lifecycleDefinition.activities.findIndex(activity=>activity.id===button.dataset.activityId);
+ if(index<0)return;
+ const activity=lifecycleDefinition.activities[index];
+ document.querySelectorAll("[data-activity-id]").forEach(item=>item.setAttribute("aria-pressed",String(item===button)));
+ $("lifecycle-example-step").textContent="EXAMPLE "+(index+1)+" OF "+lifecycleDefinition.activities.length+" · BRIDGE-REPAIR PROGRAM";
+ $("lifecycle-example-title").textContent=activity.name;
+ $("lifecycle-example-text").textContent=activity.example;
+ $("lifecycle-example-document").textContent=activity.example_document;
+}));
+
 const diagramLink=$("open-lifecycle-diagram"),diagramModal=$("lifecycle-diagram-modal");
 diagramLink.addEventListener("click",event=>{
  if(typeof diagramModal.showModal!=="function")return;

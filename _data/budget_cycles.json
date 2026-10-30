@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "definition_id": "federal-budget-lifecycle",
+  "as_of": "2028-04-15",
+  "as_of_label": "April 15, 2028",
+  "current_fiscal_year": 2028,
+  "illustrative": true,
+  "cycles": [
+    {
+      "id": "prior-years",
+      "label": "FY 2027 and earlier",
+      "relation": "Prior budgets",
+      "phase": "Continue execution and closeout",
+      "note": "Pay valid prior-year obligations, reconcile records, and support closeout and audit. Some prior-year authority may still be available.",
+      "activity_ids": [
+        "obligations",
+        "disbursements",
+        "closeout"
+      ]
+    },
+    {
+      "id": "fy2028",
+      "label": "FY 2028",
+      "relation": "Current budget",
+      "phase": "Execute this year’s budget",
+      "note": "Apportion, allot, incur obligations, and make payments. The $10 worked example belongs to this cycle.",
+      "activity_ids": [
+        "apportionment",
+        "allotment",
+        "obligations",
+        "disbursements"
+      ]
+    },
+    {
+      "id": "fy2029",
+      "label": "FY 2029",
+      "relation": "Next budget",
+      "phase": "Consider next year’s proposal",
+      "note": "In this illustrative spring snapshot, the next-year proposal is under congressional consideration while agencies continue their budget work.",
+      "activity_ids": [
+        "presidents-budget",
+        "congressional-consideration"
+      ]
+    },
+    {
+      "id": "fy2030",
+      "label": "FY 2030",
+      "relation": "Following budget",
+      "phase": "Begin formulation",
+      "note": "Spring planning for a later budget can begin while next-year legislation and current-year execution are still underway.",
+      "activity_ids": [
+        "agency-formulation",
+        "omb-review"
+      ]
+    }
+  ]
+}

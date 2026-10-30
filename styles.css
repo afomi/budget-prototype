@@ -35,3 +35,6 @@ button:hover:enabled{border-color:var(--navy)}
 .technical-note{background:#fff;box-shadow:inset 3px 0 0 var(--navy)}
 #notice{background:var(--navy);color:#fff}
 #notice.error{background:var(--red)}
+
+/* Flat accent bars: no rounded highlight caps. */
+.badge{border-radius:0;border-left:3px solid var(--red);padding-left:7px;box-shadow:none}
