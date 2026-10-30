@@ -1,4 +1,4 @@
-# Funding lifecycle and budget document review
+# Budget lifecycle, fiscal-year instances, and supporting documents
 
 Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacaville document example, and GitHub PR approval. No backend, database, wallet, or JavaScript packages.
 
@@ -6,9 +6,16 @@ Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacavil
 
 ## The focused $10 demonstration
 
-The scenario is the ordered JSON document in [_data/lifecycle.json](_data/lifecycle.json), embedded by Jekyll without a backend or fetch request. Review and version this file in GitHub alongside the budget examples.
+The primary view is process-oriented:
+- [_data/lifecycle.json](_data/lifecycle.json) defines the reusable lifecycle (the class): activities, owners, and cross-cutting feedback.
+- [_data/fy2028.json](_data/fy2028.json) defines one fiscal-year instance and references that definition.
+- [_data/execution_example.json](_data/execution_example.json) supplies the hypothetical $10 execution records and maps event kinds to lifecycle activities.
 
-The main page uses one hypothetical appropriation: $10 → $2.50 apportionment → $1 allotment → $0.75 obligation → $0.50 payment. These are nested limits and cumulative records, not amounts to sum.
+A fiscal-year instance includes preparation before its year and closeout afterward. Git budget versions and PR approvals are supporting document mechanics. These ordered JSON files are embedded by Jekyll without a backend or fetch request.
+
+An optional BPMN export from Touchpoints can formalize the same lifecycle. It is not required for this prototype; keep a future BPMN file alongside the SVG rather than maintaining a separate competing process model.
+
+The worked execution example uses one hypothetical appropriation: $10 → $2.50 apportionment → $1 allotment → $0.75 obligation → $0.50 payment. These are nested limits and cumulative records, not amounts to sum.
 
 - Traceability: select the obligation or payment and follow parent references to the appropriation.
 - Authorization: source signatures are checked against a local allowlist; a separate approval signature binds the exact document digest.

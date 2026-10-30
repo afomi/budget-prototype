@@ -1,81 +1,62 @@
 {
   "schema_version": 1,
-  "title": "Hypothetical $10 funding lifecycle",
-  "currency": "USD",
-  "amount_unit": "integer cents",
-  "approval_mode": "Simulated document approval; no GitHub merge is asserted",
-  "records": [
+  "id": "federal-budget-lifecycle",
+  "title": "Federal budget lifecycle",
+  "diagram": "diagrams/federal-budget-lifecycle.svg",
+  "activities": [
     {
-      "id": "A-001",
-      "type": "appropriation",
-      "amount_cents": 1000,
-      "authority_id": null,
-      "revises": null,
-      "account": "DEMO-2028",
-      "fiscal_year": 2028,
-      "currency": "USD",
-      "purpose": "Hypothetical program",
-      "effective_date": "2028-04-15"
+      "id": "agency-formulation",
+      "name": "Agency formulation",
+      "owner": "Agency"
     },
     {
-      "id": "AP-001",
-      "type": "apportionment",
-      "amount_cents": 250,
-      "authority_id": "A-001",
-      "revises": null,
-      "account": "DEMO-2028",
-      "fiscal_year": 2028,
-      "currency": "USD",
-      "purpose": "Hypothetical program",
-      "effective_date": "2028-04-15"
+      "id": "omb-review",
+      "name": "OMB review and passback",
+      "owner": "OMB"
     },
     {
-      "id": "AL-001",
-      "type": "allotment",
-      "amount_cents": 100,
-      "authority_id": "AP-001",
-      "revises": null,
-      "account": "DEMO-2028",
-      "fiscal_year": 2028,
-      "currency": "USD",
-      "purpose": "Hypothetical program",
-      "effective_date": "2028-04-15"
+      "id": "presidents-budget",
+      "name": "President’s budget",
+      "owner": "Executive"
     },
     {
-      "id": "OB-001",
-      "type": "obligation",
-      "amount_cents": 75,
-      "authority_id": "AL-001",
-      "revises": null,
-      "account": "DEMO-2028",
-      "fiscal_year": 2028,
-      "currency": "USD",
-      "purpose": "Hypothetical program",
-      "effective_date": "2028-04-15"
+      "id": "congressional-consideration",
+      "name": "Congressional consideration",
+      "owner": "Congress"
     },
     {
-      "id": "PAY-001",
-      "type": "disbursement",
-      "amount_cents": 50,
-      "authority_id": "OB-001",
-      "revises": null,
-      "account": "DEMO-2028",
-      "fiscal_year": 2028,
-      "currency": "USD",
-      "purpose": "Hypothetical program",
-      "effective_date": "2028-04-15"
+      "id": "apportionment",
+      "name": "Apportionment",
+      "owner": "OMB"
+    },
+    {
+      "id": "allotment",
+      "name": "Allotment",
+      "owner": "Agency"
+    },
+    {
+      "id": "obligations",
+      "name": "Obligations and commitments",
+      "owner": "Agency"
+    },
+    {
+      "id": "disbursements",
+      "name": "Disbursements",
+      "owner": "Agency / Treasury"
+    },
+    {
+      "id": "closeout",
+      "name": "Closeout and audit",
+      "owner": "Agency / Oversight"
     }
   ],
-  "authorized_adjustment": {
-    "id": "AP-002",
-    "type": "reapportionment",
-    "amount_cents": 300,
-    "authority_id": "A-001",
-    "revises": "AP-001",
-    "account": "DEMO-2028",
-    "fiscal_year": 2028,
-    "currency": "USD",
-    "purpose": "Hypothetical program",
-    "effective_date": "2028-04-15"
-  }
+  "cross_cutting": [
+    "Passbacks",
+    "Reprogramming",
+    "Supplementals",
+    "Rescissions",
+    "Clawbacks",
+    "Sequestration",
+    "Oversight and audit"
+  ]
 }
