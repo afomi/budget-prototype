@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "fy2028",
+  "definition_id": "federal-budget-lifecycle",
+  "label": "FY 2028",
+  "fiscal_year": 2028,
+  "fiscal_year_start": "2027-10-01",
+  "fiscal_year_end": "2028-09-30",
+  "illustrative": true,
+  "preparation_diagram": "diagrams/federal-budget-timeline.svg",
+  "phases": [
+    {
+      "id": "formulation",
+      "name": "Formulation",
+      "window": "2026",
+      "note": "Planning, agency requests, OMB review and passback.",
+      "activity_ids": [
+        "agency-formulation",
+        "omb-review"
+      ]
+    },
+    {
+      "id": "proposal-and-legislation",
+      "name": "Proposal and legislation",
+      "window": "2027",
+      "note": "President’s proposal and congressional consideration. Enactment timing varies.",
+      "activity_ids": [
+        "presidents-budget",
+        "congressional-consideration"
+      ]
+    },
+    {
+      "id": "execution",
+      "name": "Execution",
+      "window": "FY 2028 and later",
+      "note": "Apportion, allot, obligate, and pay after authority is available.",
+      "activity_ids": [
+        "apportionment",
+        "allotment",
+        "obligations",
+        "disbursements"
+      ]
+    },
+    {
+      "id": "closeout",
+      "name": "Closeout and oversight",
+      "window": "Beyond availability",
+      "note": "Reconcile, liquidate valid obligations, close accounts, and audit. Timing varies.",
+      "activity_ids": [
+        "closeout"
+      ]
+    }
+  ]
+}

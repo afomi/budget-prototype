@@ -16,7 +16,7 @@ function record(id,type,amount,authority,revises=null){
  return {id,type,amount_cents:amount,authority_id:authority,revises,...base,effective_date:"2028-04-15"};
 }
 const fixture=typeof module!=="undefined"&&module.exports
- ?require("./_data/lifecycle.json")
+ ?require("./_data/execution_example.json")
  :JSON.parse(document.getElementById("flow-fixture").textContent);
 const scenario=fixture.records,adjustment=fixture.authorized_adjustment;
 const encode=value=>new TextEncoder().encode(typeof value==="string"?value:JSON.stringify(value));
@@ -144,7 +144,7 @@ class Demo{
    this.exceptions.push(exception);return {accepted:false,exception};
   }
  }
- bundle(){return clone({simulation:true,registry:this.registry,source_records:this.sourceRecords,receipts:this.receipts,exceptions:this.exceptions});}
+ bundle(){return clone({definition_id:fixture.definition_id,instance_id:fixture.instance_id,simulation:true,registry:this.registry,source_records:this.sourceRecords,receipts:this.receipts,exceptions:this.exceptions});}
  async audit(){return audit(this.bundle());}
  trace(id){
   const records=this.accepted(),found=new Set();

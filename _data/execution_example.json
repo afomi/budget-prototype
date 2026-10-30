@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "definition_id": "federal-budget-lifecycle",
+  "instance_id": "fy2028",
+  "title": "Hypothetical $10 funding lifecycle",
+  "currency": "USD",
+  "amount_unit": "integer cents",
+  "approval_mode": "Simulated document approval; no GitHub merge is asserted",
+  "activity_links": {
+    "appropriation": "congressional-consideration",
+    "apportionment": "apportionment",
+    "reapportionment": "apportionment",
+    "allotment": "allotment",
+    "obligation": "obligations",
+    "disbursement": "disbursements"
+  },
+  "records": [
+    {
+      "id": "A-001",
+      "type": "appropriation",
+      "amount_cents": 1000,
+      "authority_id": null,
+      "revises": null,
+      "account": "DEMO-2028",
+      "fiscal_year": 2028,
+      "currency": "USD",
+      "purpose": "Hypothetical program",
+      "effective_date": "2028-04-15"
+    },
+    {
+      "id": "AP-001",
+      "type": "apportionment",
+      "amount_cents": 250,
+      "authority_id": "A-001",
+      "revises": null,
+      "account": "DEMO-2028",
+      "fiscal_year": 2028,
+      "currency": "USD",
+      "purpose": "Hypothetical program",
+      "effective_date": "2028-04-15"
+    },
+    {
+      "id": "AL-001",
+      "type": "allotment",
+      "amount_cents": 100,
+      "authority_id": "AP-001",
+      "revises": null,
+      "account": "DEMO-2028",
+      "fiscal_year": 2028,
+      "currency": "USD",
+      "purpose": "Hypothetical program",
+      "effective_date": "2028-04-15"
+    },
+    {
+      "id": "OB-001",
+      "type": "obligation",
+      "amount_cents": 75,
+      "authority_id": "AL-001",
+      "revises": null,
+      "account": "DEMO-2028",
+      "fiscal_year": 2028,
+      "currency": "USD",
+      "purpose": "Hypothetical program",
+      "effective_date": "2028-04-15"
+    },
+    {
+      "id": "PAY-001",
+      "type": "disbursement",
+      "amount_cents": 50,
+      "authority_id": "OB-001",
+      "revises": null,
+      "account": "DEMO-2028",
+      "fiscal_year": 2028,
+      "currency": "USD",
+      "purpose": "Hypothetical program",
+      "effective_date": "2028-04-15"
+    }
+  ],
+  "authorized_adjustment": {
+    "id": "AP-002",
+    "type": "reapportionment",
+    "amount_cents": 300,
+    "authority_id": "A-001",
+    "revises": "AP-001",
+    "account": "DEMO-2028",
+    "fiscal_year": 2028,
+    "currency": "USD",
+    "purpose": "Hypothetical program",
+    "effective_date": "2028-04-15"
+  }
+}
