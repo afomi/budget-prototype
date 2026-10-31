@@ -10,6 +10,8 @@ The primary view is a digitally native document following **VAC-2026-PATWIN-001*
 
 The public source is a district-level functional distribution, not our invented component breakdown. Public Works / Lighting & Landscaping / Patwin NP / budget fund 2101 is the business classification. Stable JSON IDs are review keys, not official expenditure account codes. The linked staff report and Engineer’s Report give a public example of the original decision packet.
 
+The current [request PR is #2](https://github.com/afomi/budget-prototype/pull/2). Its two document files have an initial draft and a clarified revision; independent review is pending.
+
 ## Real review, simulated execution
 
 The request PR contains only its JSON and Markdown. `.github/case-review-policy.json` names allowed independent approvers and merge actors. `node scripts/github-case.js sync <PR-number> --write` reads GitHub, checks the trusted base-commit policy, current-head independent reviews, scope, merger, and exact reviewed/merged bytes. A verified merge produces a file-hash manifest. An unreviewed merge does not produce a verified approval. See [review instructions](docs/city-review.md).

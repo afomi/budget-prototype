@@ -32,8 +32,10 @@ Only the public budget excerpt is copied. Private commission notes are not inclu
 ## Public originals and related decision documents
 
 - [FY2025–26 City budget book](https://www.cityofvacaville.gov/home/showpublisheddocument/25075/638858610347170000#page=175). The local working copy supplies the page excerpt below.
-- [Original page 123, extracted from the supplied budget PDF](vacaville-budget-page-123.pdf) and [page image](vacaville-budget-page-123.png).
+- [Page 123, a rendered facsimile from the supplied budget PDF](vacaville-budget-page-123.pdf) and [page image](vacaville-budget-page-123.png).
 - [May 27, 2025 Council staff report and preliminary Engineer’s Report](https://vacaville.granicus.com/MetaViewer.php?clip_id=2021&meta_id=117456&view_id=6). PDF p.4 identifies District 1 / account 2101 / Patwin NP; the report’s Table 3 on PDF p.52 labels budget fund 2101. This is a preliminary assessment-report packet, not a signed approval of our fictional request.
 - [June 24, 2025 budget-adoption staff report and recommended resolutions](https://vacaville.granicus.com/MetaViewer.php?clip_id=2027&meta_id=117995&view_id=6). Useful as a real example of a recommendation, fiscal-impact statement, and proposed decision language.
 
 Public Works is the department; Lighting & Landscaping Districts is the budget unit; Patwin is a district-level functional distribution. The prototype’s grounds/irrigation/inspection components are proposed work-package detail, not official City account codes.
+
+The single-page PDF is a compact rendered facsimile; use the City’s full budget book for the original searchable PDF.

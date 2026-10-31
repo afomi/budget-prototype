@@ -1,12 +1,35 @@
 {
   "schema_version": 1,
   "case_id": "VAC-2026-PATWIN-001",
-  "status": "not_submitted",
-  "fetched_at": null,
-  "pull_request": null,
+  "status": "awaiting_review",
+  "fetched_at": "2026-10-31T21:20:51.338Z",
+  "pull_request": {
+    "number": 2,
+    "url": "https://github.com/afomi/budget-prototype/pull/2",
+    "title": "Review the fictional Patwin maintenance work-package request",
+    "state": "open",
+    "author": "afomi",
+    "head_commit_sha": "ee70aa6e6d2f56242840c1d18f6b7d9f335f9682",
+    "base_branch": "budget/fy2025-26/approved",
+    "merged": false,
+    "merge_commit_sha": null
+  },
   "reviews": [],
   "blockers": [
-    "A collaborator must be configured as an independent document approver."
+    "No independent document approver is configured.",
+    "An authorized independent reviewer must approve the current head commit."
+  ],
+  "document_hashes": [
+    {
+      "path": "budgets/fy2025-26/patwin-maintenance.json",
+      "sha256": "c783f725bf1ddf16d0c0d496da8d0d6f0ab8fab6ce45bbe3fe52693122e4c7f6",
+      "size_bytes": 1089
+    },
+    {
+      "path": "budgets/fy2025-26/patwin-maintenance.md",
+      "sha256": "a9074a3e78db41e4378a82da90aabe764d5fe397984ee8e8870ee63423c647e7",
+      "size_bytes": 2457
+    }
   ],
   "approval_manifest": null
 }
