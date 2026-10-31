@@ -16,7 +16,7 @@ The primary operating view manages multiple budget cycles in parallel. A fiscal-
 
 Each of the nine lifecycle cards opens a concise bridge-repair example in one shared inline panel. The examples include a simple packet, memo, document, screen, or allotment decision tree. Readable draft excerpts and downloadable Markdown samples live in examples/lifecycle/; the first packet also has a CSV estimate and briefing outline. These are illustrative artifacts, not official forms or actual agency records. The previews distinguish a proposed request from enacted authority. Stage 2 reimagines passback as a PR review: OMB direction, agency revision or appeal, and approval plus merge as settlement. The memo is a review-summary export. The review is a compact illustrated sequence linked to actual sample files; it does not write to GitHub or a blockchain.
 
-Open [process.html](process.html) for a single BPMN 2.0 canvas: the connected request-to-closeout lifecycle, a passback loop, an optional adjustment, monitoring, and experiment setup. Toggle proposed transaction highlighting, select T0–T7/TA, zoom/pan, and export the current SVG. The editable [BPMN file](diagrams/budget-lifecycle.bpmn) includes DI layout, transaction colors, and task documentation for import into Touchpoints. [budget-path-story.json](diagrams/budget-path-story.json) is a contiguous path-story API payload; transaction highlighting is a separate set of nodes across the canvas. No Touchpoints account writes are performed.
+Open `/process/` for a single BPMN 2.0 canvas: the connected request-to-closeout lifecycle, a passback loop, an optional adjustment, monitoring, and experiment setup. Toggle proposed transaction highlighting, select T0–T7/TA, zoom/pan, and export the current SVG. Phase lanes are staggered along a wide left-to-right sequence. The viewer starts at reading scale; Start returns to the beginning and Fit all shows the full canvas. The editable [BPMN file](diagrams/budget-lifecycle.bpmn) includes DI layout, transaction colors, and task documentation for import into Touchpoints. [budget-path-story.json](diagrams/budget-path-story.json) is a contiguous path-story API payload; transaction highlighting is a separate set of nodes across the canvas. No Touchpoints account writes are performed.
 
 Regenerate the BPMN and transaction mapping with `npm run bpmn`. Jekyll embeds the XML and registers the pinned local bpmn-js viewer assets as static files, preserving them across watch rebuilds; no CDN or application backend is required. The model is descriptive, not an executable government workflow.
 
@@ -37,7 +37,7 @@ Run the independent verifier on the two exported files:
 
 It uses only public keys, source records, and evidence. It verifies relative to the supplied demo registry; it does not authenticate that registry against a real institution.
 
-The Vacaville example remains at document-review.html and in the real sample GitHub PR. The $10 flow does not use real financial records.
+The Vacaville example remains at `/document-review/` and in the real sample GitHub PR. The $10 flow does not use real financial records.
 
 ## The Vacaville document sample
 
@@ -65,7 +65,7 @@ Use lowercase names and fyYYYY-YY, with the starting year in full. Use the actua
 
 ## Standalone budget request
 
-Open budget-request.html for a printable, human-readable request generated from budgets/fy2027-28/bridge-request.json and its Markdown justification. Edit those two files, validate the JSON, and build Jekyll. The same files are usable in a real GitHub PR; no backend is required. The passback preview uses the same line-item justification. Read storyboard.html for nine connected paragraphs linking the request, review, and execution artifacts. The source storyboard.md is readable on GitHub too.
+Open `/budget-request/` for a printable, human-readable request generated from budgets/fy2027-28/bridge-request.json and its Markdown justification. Edit those two files, validate the JSON, and build Jekyll. The same files are usable in a real GitHub PR; no backend is required. The passback preview uses the same line-item justification. Read `/storyboard/` for nine connected paragraphs linking the request, review, and execution artifacts. The source storyboard.md is readable on GitHub too.
 
 ## GitHub flow
 

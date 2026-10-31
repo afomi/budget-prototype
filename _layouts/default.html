@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A lightweight prototype for reviewing budget documents as pull requests.">
   <title>{{ page.title | default: site.title | escape }}</title>
-  <link rel="stylesheet" href="assets/css/main.css">
-  <script src="sample-budget.js" defer></script>
-  <script src="review.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script src="{{ '/sample-budget.js' | relative_url }}" defer></script>
+  <script src="{{ '/review.js' | relative_url }}" defer></script>
+  <script src="{{ '/app.js' | relative_url }}" defer></script>
 </head>
-<body>
+<body data-site-root="{{ '/' | relative_url }}">
   <a class="skip" href="#main">Skip to content</a>
-  <header><a class="brand" href="./"><span aria-hidden="true">B↗</span> Budget Atlas</a><span class="badge">Local prototype</span></header>
+  <header><a class="brand" href="{{ '/' | relative_url }}"><span aria-hidden="true">B↗</span> Budget Atlas</a><span class="badge">Local prototype</span></header>
   <main id="main">
     {{ content }}
     <div class="intro"><div><p class="eyebrow">A SMALLER, CLEARER BUDGET WORKFLOW</p><h1>Request. Review. <em>Record.</em></h1><p>A budget request as a pull request. Every line item open to review.</p></div><a href="#diagrams" class="text-link">Explore the budget flow ↗</a></div>
@@ -51,13 +51,13 @@
       </div>
       <section id="merge-evidence" class="merge-evidence panel" aria-live="polite" hidden></section>
     </section>
-    <p class="micro">Source: Vacaville FY2025–26 Final Budget Document, printed p.123 / PDF p.175, “FY 2025/26 Proposed Budget” column. Alamo Creek $246,279; Nelson $162,778; Patwin $150,575. <a href="sources/vacaville-fy2025-26.md">Provenance</a>.</p>
+    <p class="micro">Source: Vacaville FY2025–26 Final Budget Document, printed p.123 / PDF p.175, “FY 2025/26 Proposed Budget” column. Alamo Creek $246,279; Nelson $162,778; Patwin $150,575. <a href="{{ '/sources/vacaville-fy2025-26.md' | relative_url }}">Provenance</a>.</p>
     <details class="technical-note"><summary>Branch naming and document approval</summary><p><code>main</code> holds prototype code. <code>budget/fy2025-26/approved</code> holds the approved document version; <code>budget/fy2025-26/working</code> holds the next proposed version. Open a PR from working to approved. Merge means the document is approved. Future years use the same pattern, for example <code>budget/fy2026-27/working</code>. Work-in-progress belongs in a draft PR rather than another branch name.</p></details>
     <section id="diagrams" class="reference-section" aria-labelledby="diagram-title">
       <div class="request-heading"><div><p class="eyebrow">THE PROCESS AROUND THE REQUEST</p><h2 id="diagram-title">Two views of the federal budget.</h2></div><span class="muted small">Editable vector reconstructions</span></div>
       <div class="diagram-grid">
-        <a class="panel diagram" href="diagrams/federal-budget-lifecycle.svg" target="_blank" rel="noreferrer"><img src="diagrams/federal-budget-lifecycle.svg" alt="Federal budget lifecycle: formulation, congressional consideration, execution, and closeout" loading="lazy"><span><strong>Budget lifecycle</strong><span>Open SVG ↗</span></span></a>
-        <a class="panel diagram" href="diagrams/federal-budget-timeline.svg" target="_blank" rel="noreferrer"><img src="diagrams/federal-budget-timeline.svg" alt="Illustrative FY 2028 budget process timeline by agency, OMB, Congress, and execution" loading="lazy"><span><strong>FY 2028 timeline</strong><span>Open SVG ↗</span></span></a>
+        <a class="panel diagram" href="{{ '/diagrams/federal-budget-lifecycle.svg' | relative_url }}" target="_blank" rel="noreferrer"><img src="{{ '/diagrams/federal-budget-lifecycle.svg' | relative_url }}" alt="Federal budget lifecycle: formulation, congressional consideration, execution, and closeout" loading="lazy"><span><strong>Budget lifecycle</strong><span>Open SVG ↗</span></span></a>
+        <a class="panel diagram" href="{{ '/diagrams/federal-budget-timeline.svg' | relative_url }}" target="_blank" rel="noreferrer"><img src="{{ '/diagrams/federal-budget-timeline.svg' | relative_url }}" alt="Illustrative FY 2028 budget process timeline by agency, OMB, Congress, and execution" loading="lazy"><span><strong>FY 2028 timeline</strong><span>Open SVG ↗</span></span></a>
       </div>
       <p class="micro">Rebuilt as native SVG text and shapes. The duplicate closeout stage was consolidated; timeline assumptions and changes are noted in the diagrams.</p>
     </section>
