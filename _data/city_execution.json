@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "definition_id": "city-maintenance-lifecycle",
+  "instance_id": "VAC-2026-PATWIN-001",
+  "simulation": true,
+  "roles": {
+    "city-budget-register": [
+      "appropriation"
+    ],
+    "city-funds-control": [
+      "apportionment",
+      "reapportionment",
+      "allotment"
+    ],
+    "city-procurement": [
+      "obligation"
+    ],
+    "city-payment-system": [
+      "disbursement"
+    ],
+    "untrusted-importer": []
+  },
+  "records": [
+    {
+      "id": "A-001",
+      "type": "appropriation",
+      "amount_cents": 1000000,
+      "authority_id": null,
+      "revises": null,
+      "account": "VAC-2026-PATWIN-001",
+      "fiscal_year": 2026,
+      "currency": "USD",
+      "purpose": "Patwin Park fictional maintenance work package",
+      "effective_date": "2026-04-15"
+    },
+    {
+      "id": "AP-001",
+      "type": "apportionment",
+      "amount_cents": 250000,
+      "authority_id": "A-001",
+      "revises": null,
+      "account": "VAC-2026-PATWIN-001",
+      "fiscal_year": 2026,
+      "currency": "USD",
+      "purpose": "Patwin Park fictional maintenance work package",
+      "effective_date": "2026-04-15"
+    },
+    {
+      "id": "AL-001",
+      "type": "allotment",
+      "amount_cents": 100000,
+      "authority_id": "AP-001",
+      "revises": null,
+      "account": "VAC-2026-PATWIN-001",
+      "fiscal_year": 2026,
+      "currency": "USD",
+      "purpose": "Patwin Park fictional maintenance work package",
+      "effective_date": "2026-04-15"
+    },
+    {
+      "id": "OB-001",
+      "type": "obligation",
+      "amount_cents": 75000,
+      "authority_id": "AL-001",
+      "revises": null,
+      "account": "VAC-2026-PATWIN-001",
+      "fiscal_year": 2026,
+      "currency": "USD",
+      "purpose": "Patwin Park fictional maintenance work package",
+      "effective_date": "2026-04-15"
+    },
+    {
+      "id": "PAY-001",
+      "type": "disbursement",
+      "amount_cents": 50000,
+      "authority_id": "OB-001",
+      "revises": null,
+      "account": "VAC-2026-PATWIN-001",
+      "fiscal_year": 2026,
+      "currency": "USD",
+      "purpose": "Patwin Park fictional maintenance work package",
+      "effective_date": "2026-04-15"
+    }
+  ],
+  "authorized_adjustment": {
+    "id": "AP-002",
+    "type": "reapportionment",
+    "amount_cents": 300000,
+    "authority_id": "A-001",
+    "revises": "AP-001",
+    "account": "VAC-2026-PATWIN-001",
+    "fiscal_year": 2026,
+    "currency": "USD",
+    "purpose": "Patwin Park fictional maintenance work package",
+    "effective_date": "2026-04-15"
+  },
+  "invalid_obligation": {
+    "id": "FLAG-001",
+    "type": "obligation",
+    "amount_cents": 200000,
+    "authority_id": "AL-001",
+    "revises": null,
+    "account": "VAC-2026-PATWIN-001",
+    "fiscal_year": 2026,
+    "currency": "USD",
+    "purpose": "Patwin Park fictional maintenance work package",
+    "effective_date": "2026-04-15"
+  }
+}

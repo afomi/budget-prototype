@@ -116,11 +116,11 @@ async function audit(bundle){
  return {verified:accepted.length,last_receipt_hash:previous};
 }
 class Demo{
- constructor(keys,registry){this.keys=keys;this.registry=registry;this.sourceRecords=[];this.receipts=[];this.exceptions=[];}
+ constructor(keys,registry,options={}){this.keys=keys;this.registry=registry;this.roles=options.roles||roles;this.definition=options.definition||fixture;this.sourceRecords=[];this.receipts=[];this.exceptions=[];}
  accepted(){return this.sourceRecords.filter(item=>item.accepted).map(item=>item.record);}
  async prepare(input,options={}){
   const r=canonical(clone(input));
-  const role=options.source||Object.keys(roles).find(key=>roles[key].includes(r.type));
+  const role=options.source||Object.keys(this.roles).find(key=>this.roles[key].includes(r.type));
   if(!this.keys[role])throw new Error("Unknown demo source identity.");
   const digest=await hash(r);
   const envelope={record_digest:digest,source_signer:role,source_signature:await sign(this.keys[role].privateKey,r),
@@ -144,7 +144,7 @@ class Demo{
    this.exceptions.push(exception);return {accepted:false,exception};
   }
  }
- bundle(){return clone({definition_id:fixture.definition_id,instance_id:fixture.instance_id,simulation:true,registry:this.registry,source_records:this.sourceRecords,receipts:this.receipts,exceptions:this.exceptions});}
+ bundle(){return clone({definition_id:this.definition.definition_id,instance_id:this.definition.instance_id,simulation:true,registry:this.registry,source_records:this.sourceRecords,receipts:this.receipts,exceptions:this.exceptions});}
  async audit(){return audit(this.bundle());}
  trace(id){
   const records=this.accepted(),found=new Set();
@@ -158,14 +158,14 @@ class Demo{
   return {appropriation:appropriation?.amount_cents||0,apportionment:apportioned,allotment:total("allotment"),obligation:total("obligation"),disbursement:total("disbursement")};
  }
 }
-async function createDemo(){
+async function createDemo(options={}){
  if(!webcrypto?.subtle)throw new Error("Web Crypto is required. Open the prototype through localhost.");
  const keys={},registry={};
- for(const [id,events]of Object.entries({...roles,"document-review":[]})){
+ for(const [id,events]of Object.entries({...(options.roles||roles),"document-review":[]})){
   const pair=await webcrypto.subtle.generateKey({name:"ECDSA",namedCurve:"P-256"},true,["sign","verify"]);
   keys[id]=pair;registry[id]={events,can_approve:id==="document-review",public_key:await webcrypto.subtle.exportKey("jwk",pair.publicKey)};
  }
- return new Demo(keys,registry);
+ return new Demo(keys,registry,options);
 }
 const api={createDemo,scenario,adjustment,record,canonical,validateBudget,audit,hash};
 if(typeof module!=="undefined"&&module.exports)module.exports=api;else root.BudgetFlow=api;

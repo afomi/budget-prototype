@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repository": "afomi/budget-prototype",
+  "approved_branch": "budget/fy2025-26/approved",
+  "document_paths": [
+    "budgets/fy2025-26/patwin-maintenance.json",
+    "budgets/fy2025-26/patwin-maintenance.md"
+  ],
+  "required_independent_approvals": 1,
+  "allowed_approvers": [],
+  "allowed_mergers": [
+    "afomi"
+  ],
+  "require_latest_commit": true
+}

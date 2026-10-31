@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "id": "VAC-2026-PATWIN-001",
+  "title": "Patwin Park maintenance",
+  "fiscal_year": 2026,
+  "fiscal_year_label": "FY 2025\u201326",
+  "request_cents": 1000000,
+  "published_baseline_cents": 15057500,
+  "city_context_cents": 33000000000,
+  "city_context_source": "User-supplied experiment context; not inferred from the parks excerpt.",
+  "source_path": "sources/vacaville-fy2025-26.md",
+  "source_excerpt": "sources/vacaville-fy2025-26-page-123.txt",
+  "preview_json": "examples/city/patwin-request.json",
+  "preview_md": "cases/vacaville-fy2025-26/request.md",
+  "document_json": "budgets/fy2025-26/patwin-maintenance.json",
+  "document_md": "budgets/fy2025-26/patwin-maintenance.md",
+  "execution_path": "cases/vacaville-fy2025-26/execution.json",
+  "repository": "afomi/budget-prototype",
+  "approved_branch": "budget/fy2025-26/approved",
+  "request_branch": "change/fy2025-26/patwin-maintenance",
+  "stages": [
+    {
+      "id": "request",
+      "name": "Prepare request",
+      "actor": "Public Works requester",
+      "element": "Task_Formulate",
+      "artifact": "budget-request/",
+      "record_id": null,
+      "status": "prepared"
+    },
+    {
+      "id": "review",
+      "name": "Review and revise",
+      "actor": "Budget reviewer",
+      "element": "Task_Review",
+      "artifact": "cases/vacaville-fy2025-26/request.md",
+      "record_id": null,
+      "status": "github"
+    },
+    {
+      "id": "approval",
+      "name": "Approve document",
+      "actor": "Document approver",
+      "element": "Task_Merge",
+      "artifact": "github",
+      "record_id": null,
+      "status": "github"
+    },
+    {
+      "id": "authority",
+      "name": "Record work-package limit",
+      "actor": "Funds control",
+      "element": "Task_Authority",
+      "artifact": "cases/vacaville-fy2025-26/records.md#A-001",
+      "record_id": "A-001"
+    },
+    {
+      "id": "release",
+      "name": "Release for period",
+      "actor": "Funds control",
+      "element": "Task_Apportion",
+      "artifact": "cases/vacaville-fy2025-26/records.md#AP-001",
+      "record_id": "AP-001"
+    },
+    {
+      "id": "work-order",
+      "name": "Assign work order",
+      "actor": "Funds control",
+      "element": "Task_Allot",
+      "artifact": "cases/vacaville-fy2025-26/records.md#AL-001",
+      "record_id": "AL-001"
+    },
+    {
+      "id": "commitment",
+      "name": "Record commitment",
+      "actor": "Procurement officer",
+      "element": "Task_Obligate",
+      "artifact": "cases/vacaville-fy2025-26/records.md#OB-001",
+      "record_id": "OB-001"
+    },
+    {
+      "id": "payment",
+      "name": "Accept work and pay",
+      "actor": "Contract manager / Finance",
+      "element": "Task_PartialReceipt",
+      "artifact": "cases/vacaville-fy2025-26/records.md#PAY-001",
+      "record_id": "PAY-001"
+    },
+    {
+      "id": "closeout",
+      "name": "Reconcile later",
+      "actor": "Finance / audit",
+      "element": "Task_Reconcile",
+      "artifact": "cases/vacaville-fy2025-26/records.md",
+      "record_id": null,
+      "status": "pending"
+    }
+  ],
+  "classification": {
+    "department": "Public Works",
+    "budget_unit": "Lighting & Landscaping Districts",
+    "district": "Patwin Neighborhood Park",
+    "district_number": "1",
+    "budget_fund": "2101",
+    "source_report_url": "https://vacaville.granicus.com/MetaViewer.php?clip_id=2021&meta_id=117456&view_id=6",
+    "source_report_page": 52
+  },
+  "source_pdf_url": "https://www.cityofvacaville.gov/home/showpublisheddocument/25075/638858610347170000",
+  "source_page_pdf": "sources/vacaville-budget-page-123.pdf",
+  "source_page_image": "sources/vacaville-budget-page-123.png",
+  "adoption_packet_url": "https://vacaville.granicus.com/MetaViewer.php?clip_id=2027&meta_id=117995&view_id=6"
+}

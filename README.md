@@ -1,3 +1,39 @@
+# An annotated city-budget case
+
+The primary view is a digitally native document following **VAC-2026-PATWIN-001**, a fictional $10,000 Patwin Park maintenance work package. It links the original budget page, department/district/fund classification, reviewable request, actual GitHub status, actor-based BPMN, and a signed local execution replay. Narrative and typography lead; interactive evidence is available where it explains a decision.
+
+- `/`: the annotated case, from source budget line to payment and evidence.
+- `/budget-request/`: the same proposed components and Markdown justification, with the actual source page.
+- `/process/`: the city case in BPMN, with transaction and saved-replay layers.
+- `/storyboard/`: the companion textual walkthrough.
+- `/reference/federal/` and `/reference/federal-process/`: the earlier federal reference examples.
+
+The public source is a district-level functional distribution, not our invented component breakdown. Public Works / Lighting & Landscaping / Patwin NP / budget fund 2101 is the business classification. Stable JSON IDs are review keys, not official expenditure account codes. The linked staff report and Engineer’s Report give a public example of the original decision packet.
+
+## Real review, simulated execution
+
+The request PR contains only its JSON and Markdown. `.github/case-review-policy.json` names allowed independent approvers and merge actors. `node scripts/github-case.js sync <PR-number> --write` reads GitHub, checks the trusted base-commit policy, current-head independent reviews, scope, merger, and exact reviewed/merged bytes. A verified merge produces a file-hash manifest. An unreviewed merge does not produce a verified approval. See [review instructions](docs/city-review.md).
+
+The site displays a timestamped snapshot; no API token is embedded. Refresh and commit the snapshot after GitHub review changes. Local replay controls never change GitHub status. No collaborator is invited until the user supplies a username.
+
+The replay uses exact cents and demo keys: $10,000 → $2,500 → $1,000 → $750 → $500. It preserves an approved $500 release adjustment and flags an excessive $2,000 commitment. Public evidence can be saved locally for cross-page inspection; private keys are not persisted. A restored replay is read-only until the user starts a fresh session. Source records and evidence export separately.
+
+A GitHub merge approves a prototype document version, not actual City spending. All work-package execution is fictional. The $330M figure is user-supplied context. The [offline UTXO plan](cases/vacaville-fy2025-26/utxo-plan.json) keeps exact cents in signed metadata and native carrier values separate; it has no wallet keys, real inputs, transaction bytes, fees, or broadcasts.
+
+## Run and validate
+
+    npm ci
+    bundle install
+    npm run city:bpmn
+    npm run check
+    npm test
+    npm run build
+    bundle exec jekyll serve --host 127.0.0.1 --port 4090
+
+Restart Jekyll after `_plugins` changes. Dependency assets are registered as static files so watch rebuilds retain them. Browser code uses plain JavaScript; Tailwind and bpmn-js are pinned local dependencies.
+
+## Earlier reference mechanics
+
 # Budget lifecycle, fiscal-year instances, and supporting documents
 
 Lean Jekyll prototype of a hypothetical $10 funding lifecycle, a sourced Vacaville document example, and GitHub PR approval. No backend, database, or wallet. Tailwind is a build dependency; browser behavior uses plain JavaScript.

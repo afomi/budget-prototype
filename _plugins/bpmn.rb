@@ -33,4 +33,5 @@ end
 
 Jekyll::Hooks.register :site, :pre_render do |site|
   site.data["budget_bpmn_xml"] = File.read(File.join(site.source, "diagrams/budget-lifecycle.bpmn"))
+  site.data["city_bpmn_xml"] = File.read(File.join(site.source, "diagrams/city-maintenance.bpmn"))
 end

@@ -5,14 +5,16 @@
     "dev": "bundle exec jekyll serve --host 127.0.0.1 --port 4173",
     "diagrams": "node scripts/generate-diagrams.js",
     "test": "node --test tests/*.test.js",
-    "check": "node --check app.js && node --check review.js && node --check flow.js && node --check flow-model.js && node --check scripts/budget.js && node --check process.js && node --check scripts/generate-bpmn.js",
+    "check": "node --check app.js && node --check review.js && node --check flow.js && node --check flow-model.js && node --check scripts/budget.js && node --check process.js && node --check scripts/generate-bpmn.js && node --check city.js && node --check scripts/github-case.js",
     "validate:budgets": "node scripts/budget.js check",
     "format:budgets": "node scripts/budget.js format",
     "budget:summary": "node scripts/budget.js summary",
     "budget:evidence": "node scripts/budget.js evidence",
     "build:css": "tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/main.css --minify",
     "build": "npm run validate:budgets && bundle exec jekyll build",
-    "bpmn": "node scripts/generate-bpmn.js"
+    "bpmn": "node scripts/generate-bpmn.js",
+    "city:bpmn": "node scripts/generate-bpmn.js --city",
+    "city:github": "node scripts/github-case.js"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3",
