@@ -2,8 +2,7 @@
 'use strict';
 const $=id=>document.getElementById(id),txs=JSON.parse($('bpmn-transactions').textContent);
 const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const viewer=new BpmnJS({container:'#bpmn-canvas'});
-let canvas,registry,selected=null;
+let viewer,canvas,registry,selected=null;
 const status=text=>$('bpmn-status').textContent=text;
 function download(name,value,type){const url=URL.createObjectURL(new Blob([value],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function highlight(){
@@ -25,6 +24,8 @@ function inspect(element,focus=false){
 }
 async function ready(){
  try{
+  if(typeof BpmnJS!=='function')throw new Error('BPMN viewer asset is unavailable. Rebuild or restart the local preview.');
+  viewer=new BpmnJS({container:'#bpmn-canvas'});
   const {warnings}=await viewer.importXML($('budget-bpmn').textContent.trim());
   if(warnings.length)throw new Error(warnings.map(w=>w.message).join('; '));
   canvas=viewer.get('canvas');registry=viewer.get('elementRegistry');
