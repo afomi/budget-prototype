@@ -1,0 +1,128 @@
+[
+  {
+    "id": "T0",
+    "element": "Task_Initialize",
+    "name": "Initialize experiment",
+    "optional": true,
+    "owner": "Experiment sponsor",
+    "input": null,
+    "outputs": [
+      330000
+    ],
+    "split": "Existing sponsor coins → 330,000 marker sats + sponsor change",
+    "notes": "Optional bootstrap. Transfers existing coins, not legal budget authority. Fees come from separate sponsor inputs.",
+    "artifact": "docs/blockchain-transaction-outline.md"
+  },
+  {
+    "id": "T1",
+    "element": "Task_Authority",
+    "name": "Record approved program",
+    "owner": "Budget authority",
+    "input": 330000,
+    "outputs": [
+      10000,
+      320000
+    ],
+    "split": "330,000 → 10,000 bridge program + 320,000 other city budget",
+    "notes": "Record the independently enacted authority and its source. The federal example is scaled inside the city experiment.",
+    "artifact": "examples/lifecycle/04-appropriation.md"
+  },
+  {
+    "id": "T2",
+    "element": "Task_Apportion",
+    "name": "Apportion current-period authority",
+    "owner": "OMB / mapped city role",
+    "input": 10000,
+    "outputs": [
+      2500,
+      7500
+    ],
+    "split": "10,000 → 2,500 apportioned + 7,500 unapportioned",
+    "notes": "The period limit refers to the original authority and its conditions.",
+    "artifact": "examples/lifecycle/05-apportionment.md"
+  },
+  {
+    "id": "T3",
+    "element": "Task_Allot",
+    "name": "Allot to the district",
+    "owner": "Agency funds control",
+    "input": 2500,
+    "outputs": [
+      1000,
+      1500
+    ],
+    "split": "2,500 → 1,000 district + 1,500 unallotted",
+    "notes": "Check purpose, amount, and approvals before recording the allotment.",
+    "artifact": "examples/lifecycle/06-allotment.md"
+  },
+  {
+    "id": "T4",
+    "element": "Task_Obligate",
+    "name": "Record contract obligation",
+    "owner": "Contracting approval",
+    "input": 1000,
+    "outputs": [
+      750,
+      250
+    ],
+    "split": "1,000 → 750 obligated + 250 district/unobligated",
+    "notes": "The contract remains in its authoritative system; evidence links the obligation to the allotment.",
+    "artifact": "examples/lifecycle/07-obligation.md"
+  },
+  {
+    "id": "T5",
+    "element": "Task_PartialReceipt",
+    "name": "Attest partial payment",
+    "owner": "Payment attestation",
+    "input": 750,
+    "outputs": [
+      500,
+      250
+    ],
+    "split": "750 → 500 paid + 250 obligated/unpaid",
+    "notes": "Attest the financial-system payment after work acceptance and reconciliation. Marker sats remain in demo custody.",
+    "artifact": "examples/lifecycle/08-payment.md"
+  },
+  {
+    "id": "T6",
+    "element": "Task_FinalReceipt",
+    "name": "Attest later final payment",
+    "owner": "Payment attestation",
+    "input": 250,
+    "outputs": [
+      250
+    ],
+    "split": "250 obligated/unpaid → 250 paid",
+    "notes": "This is a later event, beyond the live dashboard snapshot. The final payment occurs in the financial system.",
+    "artifact": "examples/lifecycle/09-closeout.md"
+  },
+  {
+    "id": "T7",
+    "element": "Task_Checkpoint",
+    "name": "Reconciliation checkpoint",
+    "optional": true,
+    "owner": "Reconciliation approval",
+    "input": 750,
+    "outputs": [
+      750
+    ],
+    "split": "500 paid + 250 paid → 750 reconciled",
+    "notes": "Optional checkpoint. Paid markers stay historical; reconciliation does not release fresh budget authority.",
+    "artifact": "examples/lifecycle/09-closeout.md"
+  },
+  {
+    "id": "TA",
+    "element": "Task_Adjust",
+    "name": "Record approved adjustment",
+    "optional": true,
+    "owner": "Apportionment reviewer",
+    "input": 9000,
+    "outputs": [
+      7000,
+      2000
+    ],
+    "split": "7,500 unapportioned + 1,500 unallotted → 7,000 + 2,000",
+    "notes": "Consume current unspent remainders. The period ceiling increases from 2,500 to 3,000; descendants remain intact.",
+    "artifact": "_data/execution_example.json"
+  }
+]
