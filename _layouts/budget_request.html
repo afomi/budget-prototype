@@ -7,7 +7,7 @@
 </head>
 <body>
  <a class="skip" href="#main">Skip to content</a>
- <header class="flow-header"><a class="brand" href="./">Budget Atlas</a><nav class="flow-nav" aria-label="Document navigation"><a href="./#process-definition">Lifecycle</a><a href="storyboard.html">Story</a><strong>Budget request</strong><a href="https://github.com/afomi/budget-prototype/blob/main/budgets/fy2027-28/bridge-request.json">Review source ↗</a></nav><span class="badge">Fictional sample · draft request</span></header>
+ <header class="flow-header"><a class="brand" href="./">Budget Atlas</a><nav class="flow-nav" aria-label="Document navigation"><a href="./#process-definition">Lifecycle</a><a href="process.html">BPMN</a><a href="storyboard.html">Story</a><strong>Budget request</strong><a href="https://github.com/afomi/budget-prototype/blob/main/budgets/fy2027-28/bridge-request.json">Review source ↗</a></nav><span class="badge">Fictional sample · draft request</span></header>
  <main id="main" class="request-document">
   {% assign request = site.data.sample_budget_request %}
   {% assign total_cents = 0 %}{% for item in request.line_items %}{% assign total_cents = total_cents | plus: item.amount_cents %}{% endfor %}
