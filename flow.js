@@ -42,7 +42,9 @@ function selectActivity(index){
 document.querySelectorAll("[data-activity-id]").forEach(button=>button.addEventListener("click",()=>{
  selectActivity(lifecycleDefinition.activities.findIndex(activity=>activity.id===button.dataset.activityId));
 }));
-selectActivity(0);
+function selectFromHash(){const id=location.hash.slice(1).replace(/^activity-/,''),index=lifecycleDefinition.activities.findIndex(a=>a.id===id);if(index>=0)selectActivity(index);return index;}
+if(selectFromHash()<0)selectActivity(0);
+window.addEventListener('hashchange',selectFromHash);
 const diagramLink=$("open-lifecycle-diagram"),diagramModal=$("lifecycle-diagram-modal");
 diagramLink.addEventListener("click",event=>{
  if(typeof diagramModal.showModal!=="function")return;
