@@ -27,7 +27,7 @@
    <div class="request-heading"><div><p class="eyebrow">REQUEST → AUTHORITY → EXECUTION → CLOSEOUT</p><h2 id="process-title">{{ site.data.lifecycle.title }}</h2></div><a id="open-lifecycle-diagram" href="{{ site.data.lifecycle.diagram | relative_url }}" class="text-link" aria-haspopup="dialog" aria-controls="lifecycle-diagram-modal" aria-expanded="false">Open lifecycle SVG ↗</a></div>
    <p class="micro mb-4">{{ site.data.lifecycle.timeframe }}</p>
    <p class="micro mb-3">Select a step to see the same bridge-repair example from 1–9. <a href="{{ '/storyboard/' | relative_url }}">Read it as one story →</a></p>
-   <div class="process-scroll"><div class="process-path">{% for activity in site.data.lifecycle.activities %}<button type="button" class="process-activity" id="activity-{{ activity.id }}" data-activity-id="{{ activity.id }}" aria-controls="lifecycle-example" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span class="activity-number">{{ forloop.index }}</span><svg class="activity-icon" aria-hidden="true"><use href="#artifact-{{ activity.artifact.icon }}"></use></svg><span class="activity-title">{{ activity.name }}</span><small>{{ activity.owner }}</small></button>{% endfor %}</div></div>
+   {% include process-states.html title="Lifecycle steps" steps=site.data.lifecycle.activities mode="select" %}
    {% assign first_activity = site.data.lifecycle.activities | first %}
    <div id="lifecycle-example" class="panel mt-3 border-l-[3px] border-l-red p-4" role="region" aria-live="polite" aria-labelledby="lifecycle-example-title">
     <div class="example-artifact-layout">

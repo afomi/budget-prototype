@@ -7,6 +7,15 @@ const localPath=path=>(document.body.dataset.siteRoot||'/')+path.replace(/^\//,'
 let viewer,canvas,registry,selected=null;
 const status=text=>$('bpmn-status').textContent=text;
 function download(name,value,type){const url=URL.createObjectURL(new Blob([value],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function exportPNG(){
+ const {svg}=await viewer.saveSVG();
+ const style='<style>'+document.getElementById('bpmn-export-style').textContent+'</style>';
+ const source=svg.replace(/(<svg\b[^>]*>)/,'$1'+style),xml=new DOMParser().parseFromString(source,'image/svg+xml'),root=xml.documentElement;
+ const width=parseFloat(root.getAttribute('width')),height=parseFloat(root.getAttribute('height'));
+ if(!width||!height)throw new Error('Diagram dimensions are unavailable.');
+ const objectURL=URL.createObjectURL(new Blob([source],{type:'image/svg+xml'}));
+ try{const image=new Image();image.src=objectURL;await image.decode();const raster=document.createElement('canvas'),scale=1.5;raster.width=Math.ceil(width*scale);raster.height=Math.ceil(height*scale);const context=raster.getContext('2d');context.fillStyle='#fff';context.fillRect(0,0,raster.width,raster.height);context.drawImage(image,0,0,raster.width,raster.height);const blob=await new Promise(resolve=>raster.toBlob(resolve,'image/png'));if(!blob)throw new Error('PNG export failed.');download(window.CityCase?'city-maintenance.png':'budget-lifecycle.png',blob,'image/png');status('Exported the complete diagram as a PNG, including all off-screen steps.');}finally{URL.revokeObjectURL(objectURL);}
+}
 function highlight(){
  if(!canvas)return;
  const enabled=$('show-transactions').checked,optional=$('show-optional').checked;
@@ -54,6 +63,7 @@ async function ready(){
   $('bpmn-fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('bpmn-workspace').requestFullscreen();}catch{status('Full screen is unavailable in this browser. Use zoom and pan to inspect the model.');}});
   document.addEventListener('fullscreenchange',()=>{canvas.resized();$('bpmn-fullscreen').textContent=document.fullscreenElement?'Exit full screen':'Full screen';});
   new ResizeObserver(()=>canvas.resized()).observe($('bpmn-canvas'));
+  $('bpmn-png')?.addEventListener('click',async()=>{try{await exportPNG();}catch(error){status('PNG export failed: '+error.message);}});
   $('bpmn-svg').addEventListener('click',async()=>{try{const {svg}=await viewer.saveSVG();const style='<style>'+document.getElementById('bpmn-export-style').textContent+'</style>';download('budget-lifecycle.svg',svg.replace(/(<svg\b[^>]*>)/,'$1'+style),'image/svg+xml');status('Exported the complete canvas with the current transaction layer.');}catch(error){status('SVG export failed: '+error.message);}});
   status('Model ready · actor lanes · 9 proposed transaction points · select a task for its case status');
   $('bpmn-canvas').dataset.ready='true';

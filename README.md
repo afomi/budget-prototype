@@ -166,3 +166,9 @@ A UTXO model for allocations and obligations can be explored separately once doc
 ## Diagrams
 
 The two SVGs in diagrams reconstruct the supplied federal screenshots. They are federal reference diagrams, not Vacaville's municipal process. Source corrections are noted in each SVG. Regenerate with npm run diagrams.
+
+## Diagram overview and state outline
+
+The annotated document shows `diagrams/city-maintenance.png`, a complete exported snapshot rather than a cropped iframe. Open the interactive `/process/` view and use **Export full PNG** to regenerate it after changing the BPMN. The export includes off-screen elements and the current transaction layer.
+
+`_includes/process-states.html` is a reusable ordered contents/state component. It accepts `steps`, `title`, and `mode`: reference links, inline lifecycle selection, or live city-case status. The document includes the original nine-stage federal outline; the city replay uses its own state list. Reference links select the corresponding stage on the federal page.
