@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "request_id": "VAC-2026-PATWIN-001",
+  "fiscal_year": 2026,
+  "agency": "City of Vacaville - Public Works",
+  "account": "Lighting & Landscaping Districts / Patwin NP / Budget Fund 2101",
+  "currency": "USD",
+  "purpose": "Fictional maintenance work package within the published Patwin Park baseline; no additional City funding is asserted.",
+  "line_items": [
+    {
+      "id": "grounds-maintenance",
+      "amount_cents": 600000,
+      "description": "Grounds maintenance",
+      "justification": "Proposed grounds maintenance; funding basis and work-order scope need clarification."
+    },
+    {
+      "id": "inspection-contingency",
+      "amount_cents": 150000,
+      "description": "Inspection and contingency",
+      "justification": "Retain capacity for inspection and confirmed scope changes."
+    },
+    {
+      "id": "irrigation-repairs",
+      "amount_cents": 250000,
+      "description": "Minor irrigation repairs",
+      "justification": "Planning allowance for minor repairs after inspection; no work is procured by this document."
+    }
+  ]
+}
