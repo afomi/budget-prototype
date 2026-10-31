@@ -21,3 +21,13 @@ test('revision, denied authority, adjustment and monitoring branches remain expl
  for(const element of Object.values(elementsById))if(element.$instanceOf('bpmn:FlowNode'))assert(positions.has(element.id),'Missing position '+element.id);
  for(const element of Object.values(elementsById))if(element.$type==='bpmn:SequenceFlow')assert.equal(element.sourceRef.$parent,element.targetRef.$parent);
 });
+test('lanes express responsibility while phase headings remain separate annotations',async()=>{
+ const {elementsById,rootElement}=await model(),process=elementsById.Process_Lifecycle;
+ const lanes=process.laneSets[0].lanes;
+ assert.deepEqual(lanes.map(l=>l.name),['Agency budget office','OMB budget reviewer','Executive','Congress','Agency funds control','Contracting officer','Agency engineer','Agency finance / Treasury','Finance / audit']);
+ const expected={Task_Formulate:'Lane_BudgetOffice',Task_OpenPR:'Lane_BudgetOffice',Task_Review:'Lane_OMB',Task_Revise:'Lane_BudgetOffice',Task_Merge:'Lane_OMB',Task_Propose:'Lane_Executive',Task_Congress:'Lane_Congress',Task_Authority:'Lane_FundsControl',Task_Apportion:'Lane_OMB',Task_Allot:'Lane_FundsControl',Task_Obligate:'Lane_Contracting',Task_Accept:'Lane_Engineer',Task_Pay:'Lane_Finance',Task_PartialReceipt:'Lane_Finance',Task_ReviewAdjustment:'Lane_OMB',Task_ReviseAdjustment:'Lane_BudgetOffice',Task_Adjust:'Lane_OMB',Task_FinalReceipt:'Lane_Finance',Task_Reconcile:'Lane_Audit',Task_Checkpoint:'Lane_Audit'};
+ for(const [id,laneId]of Object.entries(expected))assert(elementsById[laneId].flowNodeRef.some(n=>n.id===id),id+' has wrong responsible lane');
+ const shapes=new Map(rootElement.diagrams[0].plane.planeElement.filter(e=>e.bounds).map(e=>[e.bpmnElement.id,e.bounds]));
+ for(const node of process.flowElements.filter(e=>e.$instanceOf('bpmn:FlowNode'))){const owners=lanes.filter(l=>l.flowNodeRef.includes(node));assert.equal(owners.length,1,node.id+' must have one responsible lane');const actor=owners[0],details=JSON.parse(node.documentation[0].text);assert.equal(details.actor,actor.name);const b=shapes.get(node.id),l=shapes.get(actor.id);assert(b.y>=l.y&&b.y+b.height<=l.y+l.height,node.id+' drawn outside its lane');}
+ for(const id of ['Phase_Request','Phase_Execution','Phase_Later'])assert.equal(elementsById[id].$type,'bpmn:TextAnnotation');
+});
