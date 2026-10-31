@@ -18,7 +18,7 @@ Each of the nine lifecycle cards opens a concise bridge-repair example in one sh
 
 Open [process.html](process.html) for a single BPMN 2.0 canvas: the connected request-to-closeout lifecycle, a passback loop, an optional adjustment, monitoring, and experiment setup. Toggle proposed transaction highlighting, select T0–T7/TA, zoom/pan, and export the current SVG. The editable [BPMN file](diagrams/budget-lifecycle.bpmn) includes DI layout, transaction colors, and task documentation for import into Touchpoints. [budget-path-story.json](diagrams/budget-path-story.json) is a contiguous path-story API payload; transaction highlighting is a separate set of nodes across the canvas. No Touchpoints account writes are performed.
 
-Regenerate the BPMN and transaction mapping with `npm run bpmn`. Jekyll embeds the XML and copies the pinned local bpmn-js viewer into the site; no CDN or application backend is required. The model is descriptive, not an executable government workflow.
+Regenerate the BPMN and transaction mapping with `npm run bpmn`. Jekyll embeds the XML and registers the pinned local bpmn-js viewer assets as static files, preserving them across watch rebuilds; no CDN or application backend is required. The model is descriptive, not an executable government workflow.
 
 The worked execution example uses one hypothetical appropriation: $10 → $2.50 apportionment → $1 allotment → $0.75 obligation → $0.50 payment. These are nested limits and cumulative records, not amounts to sum.
 
@@ -86,6 +86,8 @@ For concurrent requests, use a short-lived change/fy2025-26/topic branch from ap
     npm ci
     bundle install
     bundle exec jekyll serve --host 127.0.0.1 --port 4173
+
+Restart the Jekyll preview after adding or changing `_plugins` files; the watcher does not reload plugins.
 
 Open http://127.0.0.1:4173. The document-review page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
 
