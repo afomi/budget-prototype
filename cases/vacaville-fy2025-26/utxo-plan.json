@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "case_id": "VAC-2026-PATWIN-001",
+  "status": "offline_design_only",
+  "representation": "Exact budget cents in signed metadata; native output value is a carrier, not a fiat budget quantity.",
+  "network": null,
+  "real_utxos": [],
+  "document_approval": "Bind the approved-file manifest digest only after GitHub approval is verified.",
+  "native_pool_sats": 330000,
+  "carrier_sats": 1000,
+  "carrier_policy": "Placeholder to validate against the selected chain and script policy.",
+  "transactions": [
+    {
+      "id": "T1",
+      "event_id": "A-001",
+      "spends": "experiment-pool:0",
+      "native_inputs_sats": 330000,
+      "native_outputs": [
+        {
+          "label": "case-state carrier",
+          "sats": 1000
+        },
+        {
+          "label": "experiment reserve",
+          "sats": 329000
+        }
+      ],
+      "budget_amount_cents": 1000000,
+      "parent_event_id": null,
+      "record_sha256": "95f7d33b6a68cbb424e140e834ee7c6c5c4a7575f30c06c8bee756d032d0f98f",
+      "fees": "separate sponsor inputs/change; not estimated"
+    },
+    {
+      "id": "T2",
+      "event_id": "AP-001",
+      "spends": "T1:0",
+      "native_inputs_sats": 1000,
+      "native_outputs": [
+        {
+          "label": "case-state carrier",
+          "sats": 1000
+        }
+      ],
+      "budget_amount_cents": 250000,
+      "parent_event_id": "A-001",
+      "record_sha256": "1f8b2f51f867f6e07d2bca2029baff32090e379aa394e8ed35d249bdb39d7587",
+      "fees": "separate sponsor inputs/change; not estimated"
+    },
+    {
+      "id": "T3",
+      "event_id": "AL-001",
+      "spends": "T2:0",
+      "native_inputs_sats": 1000,
+      "native_outputs": [
+        {
+          "label": "case-state carrier",
+          "sats": 1000
+        }
+      ],
+      "budget_amount_cents": 100000,
+      "parent_event_id": "AP-001",
+      "record_sha256": "3ad1dd72f896ef71172ec33f4418ce4ed42bb80f7b78a96751ee6adf5fe83215",
+      "fees": "separate sponsor inputs/change; not estimated"
+    },
+    {
+      "id": "T4",
+      "event_id": "OB-001",
+      "spends": "T3:0",
+      "native_inputs_sats": 1000,
+      "native_outputs": [
+        {
+          "label": "case-state carrier",
+          "sats": 1000
+        }
+      ],
+      "budget_amount_cents": 75000,
+      "parent_event_id": "AL-001",
+      "record_sha256": "308757cdea2ca409ac5927457128ae1030e817e41bbdf2c76fa8cca0da57731b",
+      "fees": "separate sponsor inputs/change; not estimated"
+    },
+    {
+      "id": "T5",
+      "event_id": "PAY-001",
+      "spends": "T4:0",
+      "native_inputs_sats": 1000,
+      "native_outputs": [
+        {
+          "label": "case-state carrier",
+          "sats": 1000
+        }
+      ],
+      "budget_amount_cents": 50000,
+      "parent_event_id": "OB-001",
+      "record_sha256": "33f12830b980fca4aebca4993b1454179643852be6f6a5efdea9461f5ed92565",
+      "fees": "separate sponsor inputs/change; not estimated"
+    }
+  ],
+  "adjustment": {
+    "id": "TA",
+    "spends": "T5:0",
+    "native_outputs": [
+      {
+        "label": "revised case-state carrier",
+        "sats": 1000
+      }
+    ],
+    "revises_event_id": "AP-001",
+    "new_release_cents": 300000
+  },
+  "note": "T1\u2013T5 carry cumulative state including all prior accepted budget decisions. Validate purpose, limits, signer roles, and exact parent/revision references in the application. No transaction bytes, wallet keys, signatures, fees, or broadcasts are created."
+}

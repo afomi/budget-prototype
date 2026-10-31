@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "case_id": "VAC-2026-PATWIN-001",
+  "status": "not_submitted",
+  "fetched_at": null,
+  "pull_request": null,
+  "reviews": [],
+  "blockers": [
+    "A collaborator must be configured as an independent document approver."
+  ],
+  "approval_manifest": null
+}

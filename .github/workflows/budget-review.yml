@@ -2,11 +2,13 @@ name: Budget documents
 on:
   workflow_dispatch:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, closed]
     branches: ["main", "budget/**"]
   push:
     branches: ["main", "budget/**"]
 permissions:
   contents: read
+  pull-requests: read
 jobs:
   budget-document:
     name: Budget document
@@ -47,3 +49,26 @@ jobs:
         with:
           name: approved-document-${{ github.sha }}
           path: artifacts/approval-evidence.json
+
+  city-approval:
+    name: City request approval evidence
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.head.ref == 'change/fy2025-26/patwin-maintenance'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify GitHub approval and exact document bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CASE_PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node scripts/github-case.js sync "$CASE_PR_NUMBER" --write
+      - uses: actions/upload-artifact@v4
+        with:
+          name: city-document-evidence-${{ github.event.pull_request.number }}
+          path: |
+            _data/city_github.json
+            evidence/*.json

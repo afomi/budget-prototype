@@ -12,6 +12,22 @@ const transactions=[
  {id:'T7',element:'Task_Checkpoint',name:'Reconciliation checkpoint',optional:true,owner:'Reconciliation approval',input:750,outputs:[750],split:'500 paid + 250 paid → 750 reconciled',notes:'Optional checkpoint. Paid markers stay historical; reconciliation does not release fresh budget authority.',artifact:'examples/lifecycle/09-closeout.md'},
  {id:'TA',element:'Task_Adjust',name:'Record approved adjustment',optional:true,owner:'Apportionment reviewer',input:9000,outputs:[7000,2000],split:'7,500 unapportioned + 1,500 unallotted → 7,000 + 2,000',notes:'Consume current unspent remainders. The period ceiling increases from 2,500 to 3,000; descendants remain intact.',artifact:'_data/execution_example.json'}
 ];
+const city=require('node:process').argv.includes('--city');
+const cityCase=city?JSON.parse(fs.readFileSync('_data/city_case.json')):null;
+if(city){
+ const updates={
+ T0:{name:'Initialize experiment',owner:'Experiment sponsor',input:null,outputs:[330000],split:'Existing sponsor coins → 330,000 experimental sats + sponsor change',notes:'Optional offline bootstrap. No wallet or network transaction is created.',artifact:'cases/vacaville-fy2025-26/utxo-plan.json',quantity_unit:'native satoshis'},
+ T1:{name:'Record work-package limit',owner:'Funds control',input:1000000,outputs:[1000000],split:'Approved prototype request → $10,000 work-package limit',notes:'Bind this limit to the exact request version. GitHub document approval does not establish actual City spending authority.'},
+ T2:{name:'Release for the period',owner:'Funds control',input:1000000,outputs:[250000,750000],split:'$10,000 → $2,500 released + $7,500 unreleased'},
+ T3:{name:'Assign work order',owner:'Funds control',input:250000,outputs:[100000,150000],split:'$2,500 → $1,000 work order + $1,500 unassigned'},
+ T4:{name:'Record commitment',owner:'Procurement officer',input:100000,outputs:[75000,25000],split:'$1,000 → $750 committed + $250 uncommitted'},
+ T5:{name:'Attest partial payment',owner:'Finance / payment system',input:75000,outputs:[50000,25000],split:'$750 → $500 paid + $250 committed/unpaid'},
+ T6:{name:'Attest later final payment',owner:'Finance / payment system',input:25000,outputs:[25000],split:'$250 committed/unpaid → $250 paid'},
+ T7:{name:'Reconciliation checkpoint',owner:'Finance / audit',input:75000,outputs:[75000],split:'$500 paid + $250 paid → $750 reconciled'},
+ TA:{name:'Approved release adjustment',owner:'Funds control',input:900000,outputs:[700000,200000],split:'$7,500 unreleased + $1,500 unassigned → $7,000 + $2,000',notes:'Raise the period release from $2,500 to $3,000 using current remainders; preserve AP-001 and all descendants.'}
+ };
+ for(const t of transactions)Object.assign(t,{artifact:'cases/vacaville-fy2025-26/records.md',quantity_unit:'USD cents',case_id:cityCase.id},updates[t.id]);
+}
 const txByElement=new Map(transactions.map(t=>[t.element,t]));
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c])).replace(/\n/g,'&#10;');
 const processes=[],shapes=[],edges=[];
@@ -79,14 +95,45 @@ task(m,'Task_Flag','Flag exception\nRetain source record',3220,2070,'Monitoring 
 flow(m,'M01','Start_Record','Task_Check');flow(m,'M02','Task_Check','Gateway_Valid');flow(m,'M03','Gateway_Valid','Task_Ready','Yes',[[3115,1990],[3115,1965],[3220,1965]]);flow(m,'M04','Task_Ready','End_Ready');flow(m,'M05','Gateway_Valid','Task_Flag','No',[[3115,2040],[3115,2115],[3220,2115]]);flow(m,'M06','Task_Flag','End_Flag');
 const s=process('Setup','Experiment sponsor',1510,1880,950,300);
 event(s,'Start_Setup','Experiment begins',1580,1997);task(s,'Task_Initialize','T0 · Initialize\n330,000 marker sats',1670,1970,'Experiment sponsor',null,null);event(s,'End_Setup','Marker pool ready',1920,1997,'endEvent');flow(s,'S01','Start_Setup','Task_Initialize');flow(s,'S02','Task_Initialize','End_Setup');
+if(city){
+ const actorNames={Lane_BudgetOffice:'Public Works requester',Lane_OMB:'Budget reviewer',Lane_Executive:'Document approver',Lane_Congress:'Public Works lead',Lane_FundsControl:'Funds control',Lane_Contracting:'Procurement officer',Lane_Engineer:'Contract manager',Lane_Finance:'Finance / payment system',Lane_Audit:'Finance / audit'};
+ for(const l of p.lanes)l.name=actorNames[l.id];
+ const overrides={
+ Task_Formulate:['Prepare $10,000 request\nJSON + justification','Lane_BudgetOffice',190,'budget-request/'],
+ Task_Review:['Review scope and\nfunding basis','Lane_OMB',390],
+ Task_Merge:['Approve + merge\nprototype document','Lane_Executive',565],
+ Task_Propose:['Link the approved\nrequest version','Lane_Congress',750],
+ Task_Congress:['Check published baseline\nand demo funding basis','Lane_FundsControl',935],
+ Gateway_Enacted:['Funding basis confirmed?','Lane_FundsControl',955],
+ End_NoAuthority:['Funding basis unresolved','Lane_FundsControl',1020],
+ Task_Authority:['T1 · Work-package limit\n$10,000','Lane_FundsControl',935],
+ Task_Apportion:['T2 · Period release\n$2,500','Lane_FundsControl',935],
+ Task_Allot:['T3 · Work order\n$1,000','Lane_FundsControl',935],
+ Task_Obligate:['T4 · Commitment\n$750','Lane_Contracting',1105],
+ Task_Pay:['Pay $500\nFinancial system','Lane_Finance',1445],
+ Task_PartialReceipt:['T5 · Attest partial\npayment · $500','Lane_Finance',1445],
+ Task_Adjust:['TA · Approved release\n$2,500 → $3,000','Lane_FundsControl',935],
+ Task_FinalPay:['Pay final $250\nFinancial system','Lane_Finance',1445],
+ Task_FinalReceipt:['T6 · Attest later\nfinal payment · $250','Lane_Finance',1445]
+ };
+ for(const n of p.nodes){n.details.case_id=cityCase.id;n.details.artifact='cases/vacaville-fy2025-26/records.md';if(overrides[n.id]){const [name,owner,y,artifact]=overrides[n.id];n.name=name;n.lane=owner;box(n.id).y=y;if(artifact)n.details.artifact=artifact;}}
+ for(const id of ['Task_OpenPR','Task_Review','Task_Revise','Task_Merge','Task_Propose'])p.nodes.find(n=>n.id===id).details.artifact='cases/vacaville-fy2025-26/request.md';
+ p.nodes.find(n=>n.id==='Task_Congress').details.artifact=cityCase.source_path;
+ p.nodes.find(n=>n.id==='Task_Formulate').details.notes='Prepare the fictional $10,000 work package, its department/fund context, and its justification.';
+ p.nodes.find(n=>n.id==='Task_Propose').details.notes='Link the exact approved document version and its GitHub evidence. This does not create actual City spending authority.';
+ p.nodes.find(n=>n.id==='Task_Congress').details.notes='The published $150,575 Patwin row is context. Actual availability and restrictions are not asserted. This remains a fictional work package.';
+ p.nodes.find(n=>n.id==='Task_Merge').details.notes='A configured independent reviewer approves the current head. A verified merge approves the prototype document version, not City spending.';
+ // Re-route the same sequence after assigning city actors; preserve only the review and checkpoint loops.
+ for(const f of p.flows){if(['F06','F07','F24','F34','F33'].includes(f.id))continue;const a=box(f.source),b=box(f.target),forward=a.x<b.x,ax=forward?a.x+a.w:a.x,bx=forward?b.x:b.x+b.w,ay=a.y+a.h/2,by=b.y+b.h/2,mid=(ax+bx)/2;edges.find(e=>e.id===f.id).points=ay===by?[[ax,ay],[bx,by]]:[[ax,ay],[mid,ay],[mid,by],[bx,by]];}
+}
 function phase(id,text,x,w){p.annotations.push({id,text});shapes.push({id,type:'textAnnotation',x,y:30,w,h:65});}
-phase('Phase_Request','1–3 · REQUEST AND PR REVIEW',110,1300);
-phase('Phase_Execution','4–8 · AUTHORITY AND CURRENT-YEAR EXECUTION',1570,2200);
+phase('Phase_Request',city?'REQUEST · INDEPENDENT REVIEW · MERGE':'1–3 · REQUEST AND PR REVIEW',110,1300);
+phase('Phase_Execution',city?'FUNDING CONTROLS · COMMITMENT · PAYMENT':'4–8 · AUTHORITY AND CURRENT-YEAR EXECUTION',1570,2200);
 phase('Phase_Later','ADJUSTMENT · LATER PAYMENT · CLOSEOUT',3910,2200);
 for(const n of p.nodes){
  const responsibility=p.lanes.find(l=>l.id===n.lane).name;
  n.details.actor=responsibility;
- n.details.phase=box(n.id).x<1500?'Request and PR review':box(n.id).x<3800?'Authority and execution':'Adjustment, later payment and closeout';
+ n.details.phase=box(n.id).x<1500?'Request and PR review':box(n.id).x<3800?'Funding controls and payment':'Adjustment, later payment and closeout';
  if(n.type==='userTask'){n.details.activity=n.name;n.name=responsibility+'\n'+n.name;}
  if(['Task_OpenPR','Task_Review','Task_Revise','Task_Merge'].includes(n.id))n.details.system='GitHub';
 }
@@ -96,9 +143,9 @@ xml+=' <bpmn:collaboration id="Collaboration_Budget">'+processes.map(p=>'<bpmn:p
 for(const s of shapes){const color=s.tx?'#c52233':'#112e51';xml+='  <bpmndi:BPMNShape id="'+s.id+'_di" bpmnElement="'+s.id+'"'+(s.type==='pool'||s.type==='lane'?' isHorizontal="true"':'')+' bioc:stroke="'+color+'" bioc:fill="#ffffff"><dc:Bounds x="'+s.x+'" y="'+s.y+'" width="'+s.w+'" height="'+s.h+'"/>'+(s.type.includes('Event')||s.type==='exclusiveGateway'?'<bpmndi:BPMNLabel><dc:Bounds x="'+(s.x-40)+'" y="'+(s.y+s.h+7)+'" width="120" height="35"/></bpmndi:BPMNLabel>':'')+'</bpmndi:BPMNShape>\n';}
 for(const e of edges){const vertical=e.points[0][0]===e.points[1][0];const labelX=e.points[0][0]+(vertical?10:5),labelY=vertical?(e.points[0][1]+e.points[1][1])/2-10:e.points[0][1]-24;xml+='  <bpmndi:BPMNEdge id="'+e.id+'_di" bpmnElement="'+e.id+'">'+e.points.map(([x,y])=>'<di:waypoint x="'+x+'" y="'+y+'"/>').join('')+(e.name?'<bpmndi:BPMNLabel><dc:Bounds x="'+labelX+'" y="'+labelY+'" width="85" height="22"/></bpmndi:BPMNLabel>':'')+'</bpmndi:BPMNEdge>\n';}
 xml+=' </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>\n</bpmn:definitions>\n';
-fs.writeFileSync('diagrams/budget-lifecycle.bpmn',xml);fs.writeFileSync('_data/bpmn_transactions.json',JSON.stringify(transactions,null,2)+'\n');
+fs.writeFileSync(city?'diagrams/city-maintenance.bpmn':'diagrams/budget-lifecycle.bpmn',xml);fs.writeFileSync(city?'_data/city_transactions.json':'_data/bpmn_transactions.json',JSON.stringify(transactions,null,2)+'\n');
 // A Touchpoints path story must be a contiguous sequence-flow route, not an arbitrary set of TX nodes.
 const path=['Start_Request','Task_Formulate','Task_OpenPR','Task_Review','Gateway_Settled','Task_Merge','Task_Propose','Task_Congress','Gateway_Enacted','Task_Authority','Task_Apportion','Task_Allot','Task_Obligate','Task_Accept','Task_Pay','Task_PartialReceipt','Gateway_Adjustment','Gateway_Continue','Task_FinalAccept','Task_FinalPay','Task_FinalReceipt','Task_Reconcile','Gateway_Checkpoint','Task_Checkpoint','End_Closed'];
 const annotations=Object.fromEntries(path.map(id=>{const n=p.nodes.find(n=>n.id===id),tx=txByElement.get(id);return [id,tx?tx.id+': '+tx.split+'. '+tx.notes:n.details.notes||n.name.replace(/\n/g,' ')];}));
-fs.writeFileSync('diagrams/budget-path-story.json',JSON.stringify({path_story:{name:'Bridge request through payment and reconciliation',description:'Illustrative federal lifecycle in a 330,000-sat city-scale experiment. Includes optional T7; skips adjustment. No chain transactions executed.',node_ids:path,annotations}},null,2)+'\n');
+fs.writeFileSync(city?'diagrams/city-path-story.json':'diagrams/budget-path-story.json',JSON.stringify({path_story:{name:city?'Patwin request through payment and reconciliation':'Bridge request through payment and reconciliation',description:city?'VAC-2026-PATWIN-001. Prototype document review and simulated city execution. Includes optional T7; skips adjustment.':'Illustrative federal lifecycle in a 330,000-sat city-scale experiment. Includes optional T7; skips adjustment. No chain transactions executed.',node_ids:path,annotations}},null,2)+'\n');
 console.log('Generated one BPMN canvas, 9 transaction mappings, and a contiguous Touchpoints path-story payload.');

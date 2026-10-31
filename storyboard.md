@@ -1,59 +1,37 @@
 ---
 layout: storyboard
-title: A bridge repair, from request to payment
+title: Patwin maintenance, from request to payment
 permalink: /storyboard/
 ---
 
-Cedar Creek Bridge carries school buses, residents, and emergency vehicles along a fictional federal road. Flood damage has restricted access. An agency wants to repair it as part of a **$10 million bridge-repair program**. This story follows that request through preparation before FY 2028, execution during the year, and later closeout. All decisions and records below are illustrative.
+**VAC-2026-PATWIN-001 · FY 2025–26.** The public Vacaville budget table lists $150,575 for Patwin Park in its FY 2025/26 Proposed Budget column. This story proposes a fictional $10,000 maintenance work package within that baseline. The table is context, not proof of legal spending authority. [Inspect the source and its limits]({{ '/sources/vacaville-fy2025-26.md' | relative_url }}).
 
-## 1. Write the request
+## Write one reviewable request
 
-An agency analyst prepares three line items: $7.5 million for priority repairs, $1.5 million for design and inspection, and $1 million for emergency-access planning. The amounts and stable line-item IDs live in [ordered JSON]({{ '/budgets/fy2027-28/bridge-request.json' | relative_url }}); the need, delivery milestones, risks, and decision requested live in a [Markdown justification]({{ '/budgets/fy2027-28/bridge-request.md' | relative_url }}). Jekyll turns those same files into a [readable budget request]({{ '/budget-request/' | relative_url }}). A reviewer can read the document or inspect the underlying lines.
+A Public Works requester prepares [ordered JSON]({{ '/examples/city/patwin-request.json' | relative_url }}) for $6,000 of grounds maintenance, $2,500 of irrigation repairs, and $1,500 of inspection and contingency. The [Markdown justification]({{ '/cases/vacaville-fy2025-26/request.md' | relative_url }}) explains scope, funding basis, delivery, and controls. The [request page]({{ '/budget-request/' | relative_url }}) renders those same files. There is no proposed transfer from another maintenance district.
 
-**Handoff:** the analyst opens a GitHub PR from `budget/fy2027-28/working` into `budget/fy2027-28/approved`, containing the request and its justification. The current files show the revised request described next; the [initial JSON]({{ '/examples/lifecycle/02-request-v1.json' | relative_url }}) preserves the earlier wording.
+## Review, revise, and approve the document
 
-## 2. Review the request
+The same files form a real GitHub PR. A reviewer can question a JSON line or the Markdown funding explanation. The requester commits a response to the same PR; earlier commits remain in history. A configured independent approver must approve the current head commit. Merging approves that document version. It is a prototype review and does not approve actual City spending. The [case page]({{ '/' | relative_url }}) shows the timestamped GitHub status; it never substitutes a local replay for an actual review.
 
-In this proposed workflow, passback is a PR review. The OMB reviewer keeps the $10 million planning level but comments on `priority-bridge-repairs`: “Replace uniform allowances with condition-based estimates. Explain how the priority list protects school-bus and emergency access.” The agency commits a revision to the same PR, updating the line-item justification and quarterly delivery milestones. The clean JSON diff makes the change easy to review; the amounts stay the same. If the agency disagreed, it could attach an appeal before settlement.
+The evidence tool records the PR, reviewed commit, authorized reviewer, merge actor, and exact file hashes. Until those checks pass, the approved-file manifest is absent. [Reviewer instructions](https://github.com/afomi/budget-prototype/blob/main/docs/city-review.md) describe the process.
 
-The reviewer approves and merges the revised documents. **Merging approves that document version.** The PR preserves the comments, response, and commits; a [passback review summary]({{ '/examples/lifecycle/02-passback.md' | relative_url }}) is a portable account of the decision. This is a fictional review, not an actual OMB approval. The repository’s [real Vacaville sample PR](https://github.com/afomi/budget-prototype/pull/1) demonstrates the GitHub document mechanic and remains open for review.
+## Record a work-package limit and period release
 
-## 3. Propose the budget
+The local replay records **A-001**, a simulated $10,000 work-package limit, followed by **AP-001**, a $2,500 period release. These are prototype source records, not City records. Each points to this case; AP-001 points back to A-001. The remaining $7,500 is unreleased in the replay. [Inspect the execution records]({{ '/cases/vacaville-fy2025-26/execution.json' | relative_url }}) and [read their narrative]({{ '/cases/vacaville-fy2025-26/records.md' | relative_url }}).
 
-The settled request feeds the President’s budget. A [program excerpt]({{ '/examples/lifecycle/03-presidents-budget.md' | relative_url }}) carries the same $10 million purpose and proposed level into the submission to Congress. It is still a proposal. The request and its review explain how that proposal was developed.
+## Assign a work order and record a commitment
 
-## 4. Establish authority
+Funds control assigns **AL-001**, a $1,000 work-order limit from AP-001. A procurement officer records **OB-001**, a fictional $750 maintenance commitment against that work order. Another $250 remains uncommitted. The [BPMN canvas]({{ '/process/' | relative_url }}) shows the responsible actors and selected proposed transaction points.
 
-For this story, enacted legislation provides $10 million for the bridge-repair program. The agency records **A-001**, including purpose, amount, availability, and the legal reference. The [fictional appropriation excerpt]({{ '/examples/lifecycle/04-appropriation.md' | relative_url }}) represents that source. It is this legal authority that supports execution; merging the planning request did not create it.
+## Accept work and attest a payment
 
-## 5. Apportion the authority
+A contract manager accepts the first work milestone. Finance records a fictional $500 payment as **PAY-001**, linked to OB-001. A separate verification receipt binds the source digest, demo signatures, parent reference, and previous receipt. Follow PAY-001 → OB-001 → AL-001 → AP-001 → A-001. Another $250 remains committed but unpaid. Financial source records and verification evidence export separately from the case page.
 
-OMB approves **AP-001**, a $2.5 million limit for April–June 2028, linked to A-001. The [simplified apportionment schedule]({{ '/examples/lifecycle/05-apportionment.md' | relative_url }}) makes the parent authority and current-period limit visible. The rest of the appropriation is not automatically available under this schedule.
+## Change a decision and detect an inconsistency
 
-## 6. Allot funds to the district
+An approved local adjustment records **AP-002**, raising the period release from $2,500 to $3,000. It references AP-001 and preserves the original receipt. A new $2,000 commitment against the work order exceeds its remaining $250; the gateway flags it without appending a receipt or changing accepted balances. Both demonstrations use the same case, amounts, and parent IDs.
 
-Agency funds control checks the district’s $1 million request against the apportionment, purpose, and approval conditions. If it fits, the agency records **AL-001**, referencing AP-001; otherwise it returns the request for review. The [allotment decision]({{ '/examples/lifecycle/06-allotment.md' | relative_url }}) records the reasoning. The overview also shows this as a small decision tree. In this simplified snapshot, $1.5 million remains unallotted.
+## Reconcile later and choose what to anchor
 
-## 7. Obligate funds for the repair
-
-The district signs a $750,000 contract for Cedar Creek Bridge deck repairs and abutment stabilization. Its financial system records **OB-001** against AL-001 and retains the contract and approvals. The [contract and obligation sample]({{ '/examples/lifecycle/07-obligation.md' | relative_url }}) shows the key fields. The district has $250,000 of its allotment left unobligated.
-
-## 8. Accept work and pay
-
-Engineers accept the first milestone and approve the contractor’s invoice. Treasury makes a $500,000 payment; the agency records **PAY-001** against OB-001 and reconciles it. The [invoice and payment sample]({{ '/examples/lifecycle/08-payment.md' | relative_url }}) links the accepted work, invoice, obligation, and payment. Another $250,000 remains obligated but unpaid. Following the references leads from payment → obligation → allotment → apportionment → appropriation.
-
-## 9. Reconcile and retain the history
-
-Later, after final acceptance and the remaining $250,000 payment, staff reconcile the contract and retain its approval trail in a [closeout note]({{ '/examples/lifecycle/09-closeout.md' | relative_url }}). Project closeout and appropriation-account closeout have different timing. A later authorized adjustment should reference the original decision and preserve it, rather than overwrite it.
-
-## Try the pieces together
-
-The [execution demo]({{ '/#execution-example' | relative_url }}) runs the same proportions at a $10 scale: $10 → $2.50 → $1 → $0.75 → $0.50. Select the payment to trace its authority, apply the approved reapportionment to see a preserved revision, or submit a $2 obligation to see an inconsistent event flagged. Evidence and source records export separately. These are working local computations using simulated sources and approvals.
-
-For a real document review, edit the JSON and Markdown, run `npm run validate:budgets` and `npm run build`, then commit and open a PR. The generated page reads the same files; GitHub supplies the persistent review and merge record. No additional application server is needed for that workflow.
-
-## Where blockchain could fit
-
-Start with Git review and authoritative financial records. An approved apportionment or an agency-to-Treasury handoff may merit a shared verification receipt if independent participants need to check the same history. That receipt could bind the exact record digest, signer, approval, and parent references. Drafts, comments, contracts, and payment processing stay in their existing systems. A signed log may be sufficient initially.
-
-A later UTXO design could represent successive approved authority states, referencing the outputs they revise or allocate and preserving the history. Budget amounts would be application data, separate from native coins and fees. The prototype does not submit blockchain transactions; the review and document toolkit already work without that layer.
+A later $250 payment would complete the commitment after final acceptance. It remains pending in the live snapshot. Reconciliation retains the approval and payment trail; paid amounts do not become fresh authority. The $330M / 330,000-sat city-scale experiment is context. This small case needs exact cents in signed metadata because one sat per $1,000 cannot express its payments exactly. [The offline UTXO plan]({{ '/cases/vacaville-fy2025-26/utxo-plan.json' | relative_url }}) shows selected state transitions without constructing or broadcasting a transaction.

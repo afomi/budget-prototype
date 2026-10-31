@@ -4,6 +4,7 @@
 @import "../../styles.css" layer(components);
 @import "../../flow.css" layer(components);
 @import "../../process.css" layer(components);
+@import "../../city.css" layer(components);
 @import "tailwindcss/utilities.css" layer(utilities);
 
 /* Keep the existing dense layout; its base styles already handle resets. */

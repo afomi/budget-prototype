@@ -1,0 +1,145 @@
+[
+  {
+    "id": "T0",
+    "element": "Task_Initialize",
+    "name": "Initialize experiment",
+    "optional": true,
+    "owner": "Experiment sponsor",
+    "input": null,
+    "outputs": [
+      330000
+    ],
+    "split": "Existing sponsor coins → 330,000 experimental sats + sponsor change",
+    "notes": "Optional offline bootstrap. No wallet or network transaction is created.",
+    "artifact": "cases/vacaville-fy2025-26/utxo-plan.json",
+    "quantity_unit": "native satoshis",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T1",
+    "element": "Task_Authority",
+    "name": "Record work-package limit",
+    "owner": "Funds control",
+    "input": 1000000,
+    "outputs": [
+      1000000
+    ],
+    "split": "Approved prototype request → $10,000 work-package limit",
+    "notes": "Bind this limit to the exact request version. GitHub document approval does not establish actual City spending authority.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T2",
+    "element": "Task_Apportion",
+    "name": "Release for the period",
+    "owner": "Funds control",
+    "input": 1000000,
+    "outputs": [
+      250000,
+      750000
+    ],
+    "split": "$10,000 → $2,500 released + $7,500 unreleased",
+    "notes": "The period limit refers to the original authority and its conditions.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T3",
+    "element": "Task_Allot",
+    "name": "Assign work order",
+    "owner": "Funds control",
+    "input": 250000,
+    "outputs": [
+      100000,
+      150000
+    ],
+    "split": "$2,500 → $1,000 work order + $1,500 unassigned",
+    "notes": "Check purpose, amount, and approvals before recording the allotment.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T4",
+    "element": "Task_Obligate",
+    "name": "Record commitment",
+    "owner": "Procurement officer",
+    "input": 100000,
+    "outputs": [
+      75000,
+      25000
+    ],
+    "split": "$1,000 → $750 committed + $250 uncommitted",
+    "notes": "The contract remains in its authoritative system; evidence links the obligation to the allotment.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T5",
+    "element": "Task_PartialReceipt",
+    "name": "Attest partial payment",
+    "owner": "Finance / payment system",
+    "input": 75000,
+    "outputs": [
+      50000,
+      25000
+    ],
+    "split": "$750 → $500 paid + $250 committed/unpaid",
+    "notes": "Attest the financial-system payment after work acceptance and reconciliation. Marker sats remain in demo custody.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T6",
+    "element": "Task_FinalReceipt",
+    "name": "Attest later final payment",
+    "owner": "Finance / payment system",
+    "input": 25000,
+    "outputs": [
+      25000
+    ],
+    "split": "$250 committed/unpaid → $250 paid",
+    "notes": "This is a later event, beyond the live dashboard snapshot. The final payment occurs in the financial system.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "T7",
+    "element": "Task_Checkpoint",
+    "name": "Reconciliation checkpoint",
+    "optional": true,
+    "owner": "Finance / audit",
+    "input": 75000,
+    "outputs": [
+      75000
+    ],
+    "split": "$500 paid + $250 paid → $750 reconciled",
+    "notes": "Optional checkpoint. Paid markers stay historical; reconciliation does not release fresh budget authority.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  },
+  {
+    "id": "TA",
+    "element": "Task_Adjust",
+    "name": "Approved release adjustment",
+    "optional": true,
+    "owner": "Funds control",
+    "input": 900000,
+    "outputs": [
+      700000,
+      200000
+    ],
+    "split": "$7,500 unreleased + $1,500 unassigned → $7,000 + $2,000",
+    "notes": "Raise the period release from $2,500 to $3,000 using current remainders; preserve AP-001 and all descendants.",
+    "artifact": "cases/vacaville-fy2025-26/records.md",
+    "quantity_unit": "USD cents",
+    "case_id": "VAC-2026-PATWIN-001"
+  }
+]
