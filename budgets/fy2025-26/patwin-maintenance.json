@@ -11,7 +11,7 @@
       "id": "grounds-maintenance",
       "amount_cents": 600000,
       "description": "Grounds maintenance",
-      "justification": "Proposed grounds maintenance; funding basis and work-order scope need clarification."
+      "justification": "Planning allowance for targeted grounds maintenance; actual work orders require review."
     },
     {
       "id": "inspection-contingency",
