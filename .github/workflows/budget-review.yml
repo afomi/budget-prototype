@@ -14,10 +14,10 @@ jobs:
     name: Budget document
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - run: npm ci
@@ -35,8 +35,8 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref_name, 'budget/') && endsWith(github.ref_name, '/approved')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - run: npm run validate:budgets
@@ -45,7 +45,7 @@ jobs:
           BUDGET_BRANCH: ${{ github.ref_name }}
           BUDGET_COMMIT_SHA: ${{ github.sha }}
         run: npm run budget:evidence
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: approved-document-${{ github.sha }}
           path: artifacts/approval-evidence.json
@@ -55,10 +55,10 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.head.ref == 'change/fy2025-26/patwin-maintenance'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.ref }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
       - name: Verify GitHub approval and exact document bytes
@@ -66,7 +66,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           CASE_PR_NUMBER: ${{ github.event.pull_request.number }}
         run: node scripts/github-case.js sync "$CASE_PR_NUMBER" --write
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: city-document-evidence-${{ github.event.pull_request.number }}
           path: |

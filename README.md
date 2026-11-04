@@ -117,7 +117,7 @@ Open `/budget-request/` for a printable, human-readable request generated from b
 6. Resolve review threads and merge when the document is approved.
 7. A push to the approved branch creates an Actions artifact with budget JSON SHA-256 digests and the commit SHA.
 
-The sample PR is intentionally left open for review. The initial approved branch seeds the transcribed source; its creation is not a historical PR approval. The evidence artifact identifies its commit and branch but does not itself prove review occurred. Review requirements are a human convention in this lean prototype; repository protection rules are not configured.
+The sample PR is intentionally left open for review. The initial approved branch seeds the transcribed source; its creation is not a historical PR approval. The evidence artifact identifies its commit and branch but does not itself prove review occurred. Review requirements on budget branches are a human convention in this lean prototype. `main` is protected: changes arrive by pull request, the `Budget document` check must pass on an up-to-date branch, conversations must be resolved, and force pushes and deletion are blocked. Admins can bypass these rules.
 
 For concurrent requests, use a short-lived change/fy2025-26/topic branch from approved and target the same approved branch. After merging, update the persistent working branch from approved before another request. Use a separate branch pair for a new fiscal year.
 
