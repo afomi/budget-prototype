@@ -21,9 +21,9 @@
     },
     {
       "id": "patwin-park",
-      "amount_cents": 15057500,
+      "amount_cents": 15557500,
       "description": "Patwin Park",
-      "justification": "Source functional-distribution amount; maintenance zone, not capital spending."
+      "justification": "Hypothetical request: add $5,000 for maintenance at Patwin Park. Funding source and scope require document review."
     }
   ]
 }
