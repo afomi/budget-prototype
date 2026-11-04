@@ -8,6 +8,8 @@ The primary view is a digitally native document following **VAC-2026-PATWIN-001*
 - `/storyboard/`: the companion textual walkthrough.
 - `/reference/federal/` and `/reference/federal-process/`: the earlier federal reference examples.
 
+Published at [afomi.github.io/budget-prototype](https://afomi.github.io/budget-prototype/). A push to `main` builds the site in GitHub Actions and deploys that `github.io` project URL. There is no custom domain.
+
 The public source is a district-level functional distribution, not our invented component breakdown. Public Works / Lighting & Landscaping / Patwin NP / budget fund 2101 is the business classification. Stable JSON IDs are review keys, not official expenditure account codes. The linked staff report and Engineer’s Report give a public example of the original decision packet.
 
 The current [request PR is #2](https://github.com/afomi/budget-prototype/pull/2). Its two document files have an initial draft and a clarified revision; independent review is pending.
@@ -127,7 +129,7 @@ For concurrent requests, use a short-lived change/fy2025-26/topic branch from ap
 
 Restart the Jekyll preview after adding or changing `_plugins` files; the watcher does not reload plugins.
 
-Open http://127.0.0.1:4173. The document-review page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
+Open http://127.0.0.1:4173/budget-prototype/. `_config.yml` sets `baseurl` to `/budget-prototype`, the path of the default `github.io` project site, and the local server uses that same prefix. The document-review page is an in-memory sandbox using examples/base-budget.json and examples/vacaville-parks-request.json, embedded in generated sample-budget.js. Browser reviews do not write to GitHub. Use the real GitHub PR for persistent discussion and approval.
 
 ## Jekyll + Tailwind
 

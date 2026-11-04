@@ -1,7 +1,8 @@
 title: Budget Atlas
 description: A budget document PR review prototype
-url: ""
-baseurl: ""
+# Default project site: https://afomi.github.io/budget-prototype/
+url: "https://afomi.github.io"
+baseurl: "/budget-prototype"
 destination: _site
 encoding: utf-8
 markdown: kramdown
