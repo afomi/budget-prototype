@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
  <title>Budget Atlas · Managing overlapping budget cycles</title>
- <meta name="description" content="Manage overlapping budget cycles: current-year execution, next-year planning, and prior-year closeout.">
+ {% include seo.html description="Manage overlapping budget cycles: current-year execution, next-year planning, and prior-year closeout." %}
  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
  <script id="lifecycle-definition" type="application/json">{{ site.data.lifecycle | jsonify }}</script>
  <script id="flow-fixture" type="application/json">{{ site.data.execution_example | jsonify }}</script>
@@ -18,7 +18,7 @@
   <symbol id="artifact-tree" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5"/><rect x="2" y="17" width="7" height="5"/><rect x="15" y="17" width="7" height="5"/><path d="M12 7v5M5.5 17v-5h13v5"/></g></symbol>
  </defs></svg>
  <a class="skip" href="#main">Skip to content</a>
- <header class="flow-header"><a class="brand" href="{{ '/' | relative_url }}">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><strong>Overview</strong><a href="#process-definition">Lifecycle</a><a href="#year-instance">Budget cycles</a><a href="#execution-example">$10 execution example</a><a href="{{ '/process/' | relative_url }}">BPMN</a><a href="{{ '/storyboard/' | relative_url }}">Story</a><a href="{{ '/budget-request/' | relative_url }}">Budget request</a><a href="{{ '/document-review/' | relative_url }}">Document review</a><a href="https://github.com/afomi/budget-prototype/pull/1">GitHub sample PR ↗</a></nav><span class="badge">Local simulation · no blockchain network</span></header>
+ <header class="flow-header"><a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/logo.svg' | relative_url }}" alt="" width="28" height="28">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><strong>Overview</strong><a href="#process-definition">Lifecycle</a><a href="#year-instance">Budget cycles</a><a href="#execution-example">$10 execution example</a><a href="{{ '/process/' | relative_url }}">BPMN</a><a href="{{ '/storyboard/' | relative_url }}">Story</a><a href="{{ '/budget-request/' | relative_url }}">Budget request</a><a href="{{ '/document-review/' | relative_url }}">Document review</a><a href="https://github.com/afomi/budget-prototype/pull/1">GitHub sample PR ↗</a></nav><span class="badge">Local simulation · no blockchain network</span></header>
  <main id="main">
   {{ content }}
 
