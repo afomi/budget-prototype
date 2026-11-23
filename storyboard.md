@@ -2,6 +2,7 @@
 layout: storyboard
 title: Patwin maintenance, from request to payment
 permalink: /storyboard/
+description: A step-by-step walkthrough of the Patwin Park maintenance request, from budget line to payment.
 ---
 
 **VAC-2026-PATWIN-001 · FY 2025–26.** The public Vacaville budget table lists $150,575 for Patwin Park in its FY 2025/26 Proposed Budget column. This story proposes a fictional $10,000 maintenance work package within that baseline. The table is context, not proof of legal spending authority. [Inspect the source and its limits]({{ '/sources/vacaville-fy2025-26.md' | relative_url }}).

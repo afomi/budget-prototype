@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ page.title }} · Budget Atlas</title>
+ {% include seo.html %}
  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/bpmn-js/assets/diagram-js.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/bpmn-js/assets/bpmn-js.css' | relative_url }}">
  <style id="bpmn-export-style">
 .tx-highlight .djs-visual > rect{stroke:#c52233!important;stroke-width:3px!important;fill:#fff!important}.tx-optional .djs-visual > rect{stroke-dasharray:7 4!important}.tx-muted .djs-visual > rect{stroke:#112e51!important;stroke-width:2px!important;stroke-dasharray:none!important}.process-selected .djs-visual > rect{fill:#edf4fb!important}
@@ -12,7 +13,7 @@
 </head>
 <body data-site-root="{{ '/' | relative_url }}">
  <a class="skip" href="#main">Skip to content</a>
- <header class="flow-header"><a class="brand" href="{{ '/' | relative_url }}">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><a href="{{ '/' | relative_url }}">Overview</a><strong>BPMN</strong><a href="{{ '/storyboard/' | relative_url }}">Story</a><a href="{{ '/budget-request/' | relative_url }}">Budget request</a></nav><span class="badge">Process model · proposed TX points</span></header>
+ <header class="flow-header"><a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/assets/logo.svg' | relative_url }}" alt="" width="28" height="28">Budget Atlas</a><nav class="flow-nav" aria-label="Prototype views"><a href="{{ '/' | relative_url }}">Overview</a><strong>BPMN</strong><a href="{{ '/storyboard/' | relative_url }}">Story</a><a href="{{ '/budget-request/' | relative_url }}">Budget request</a></nav><span class="badge">Process model · proposed TX points</span></header>
  <main id="main" class="process-page">
   <div class="process-page-heading"><div><p class="eyebrow">ONE CANVAS · REQUEST THROUGH CLOSEOUT</p><h1>The process, <em>with transaction points.</em></h1></div><p>1 sat = $1,000 represented spending<br>330,000 sats → $330M experiment</p></div>
   <section class="bpmn-workspace" id="bpmn-workspace" aria-label="Interactive BPMN process model">

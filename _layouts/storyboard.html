@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ page.title | escape }} · Budget Atlas</title><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">{% include city-data.html %}</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ page.title | escape }} · Budget Atlas</title>
+{% include seo.html %}
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">{% include city-data.html %}</head>
 <body data-site-root="{{ '/' | relative_url }}">
  <a class="skip" href="#main">Skip to content</a>
  {% include city-nav.html %}
