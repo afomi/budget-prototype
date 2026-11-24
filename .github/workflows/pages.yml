@@ -12,6 +12,10 @@ permissions:
 concurrency:
   group: pages
   cancel-in-progress: false
+# Install gems exactly as Gemfile.lock pins them; fail rather than re-resolve.
+env:
+  BUNDLE_FROZEN: "true"
+
 jobs:
   build:
     name: Build
