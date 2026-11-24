@@ -17,8 +17,8 @@
     "city:github": "node scripts/github-case.js"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "4.3.3",
-    "bpmn-js": "18.31.1",
-    "tailwindcss": "4.3.3"
+    "@tailwindcss/cli": "4.3.5",
+    "bpmn-js": "18.33.0",
+    "tailwindcss": "4.3.5"
   }
 }
